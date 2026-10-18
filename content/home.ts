@@ -1,6 +1,8 @@
+import { site } from "./site";
+
 export const home = {
   hero: {
-    eyebrow: "BESPOKE JOURNEYS · EST. 2025",
+    eyebrow: `BESPOKE JOURNEYS · EST. ${site.established}`,
     lineOne: "Journeys,",
     emphasis: "beautifully",
     lineTwo: " planned.",
@@ -31,6 +33,12 @@ export const home = {
     link: "Get to know Divine Travels",
     note: "Considered in every detail.",
     values: [ {title:"Your own travel consultant",description:"One person who gets to know you, from the very first hello."}, {title:"People, not just places",description:"Local knowledge that opens the door to a more personal experience."}, {title:"Room to be you",description:"A journey shaped around your taste, budget, and natural rhythm."}, {title:"Thoughtful from start to finish",description:"Care that travels with you, wherever the day takes you."} ],
+  },
+  journal: {
+    caption: "Somewhere that feels like you.",
+    brand: site.name.toUpperCase(),
+    title: "A journey, just for you.",
+    details: "YOUR PACE \u00a0 · \u00a0 YOUR PEOPLE \u00a0 · \u00a0 YOUR PLACE",
   },
   stories: { eyebrow: "MOMENTS THAT STAY", title: "A journey is personal. ", emphasis: "So are the stories.", disclaimer: "Illustrative traveler stories · Placeholder testimonials for design preview", link: "Read more stories" },
   stats: [ { value:8,suffix:"",label:"Destinations to discover" }, { value:4,suffix:"",label:"Journeys to make your own" }, { value:1,suffix:"",label:"Dedicated point of contact" } ],

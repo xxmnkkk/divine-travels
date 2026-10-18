@@ -1,6 +1,8 @@
+const established = 2025;
+
 export const site = {
   name: 'Divine Travels',
-  established: 2025,
+  established,
   description: 'Thoughtfully tailored journeys, personally planned around you. Explore a world of possibilities with Divine Travels.',
   url: 'https://divinetravels.example',
   email: 'hello@divinetravels.example',
@@ -16,7 +18,7 @@ export const site = {
     { label: 'Contact', href: '/contact' },
   ],
   hero: {
-    eyebrow: 'BESPOKE JOURNEYS · EST. 2025',
+    eyebrow: `BESPOKE JOURNEYS · EST. ${established}`,
     title: 'Journeys,',
     emphasis: 'beautifully',
     ending: 'planned.',

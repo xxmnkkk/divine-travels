@@ -1,0 +1,50 @@
+import { site } from './site';
+
+export const layout = {
+  brand: {
+    homeLabel: `${site.name} home`,
+    firstWord: 'Divine',
+    secondWord: 'Travels',
+  },
+  navigation: {
+    links: site.nav,
+    mainLabel: 'Main navigation',
+    mobileLabel: 'Mobile navigation',
+    dialogLabel: 'Navigation',
+    openLabel: 'Open navigation',
+    closeLabel: 'Close navigation',
+    primaryCta: 'Plan my trip',
+    mobileCta: 'Let’s plan your journey',
+    mobileNote: 'Thoughtfully crafted. Entirely yours.',
+  },
+  footer: {
+    introduction: ['A world of possibilities.', 'A journey that’s entirely yours.'],
+    about: { label: 'A little about us', href: '/about' },
+    exploreHeading: 'Explore',
+    exploreLabel: 'Footer explore',
+    exploreLinks: [
+      { label: 'Destinations', href: '/destinations' },
+      { label: 'Our journeys', href: '/journeys' },
+      { label: 'How it works', href: '/how-it-works' },
+      { label: 'Traveler stories', href: '/stories' },
+    ],
+    contactHeading: 'Let’s talk travel',
+    contactLink: 'Meet your consultant',
+    email: site.email,
+    contactNote: 'Contact details coming soon',
+    contactLabel: `Contact ${site.name}`,
+    storiesLabel: 'Explore our travel stories',
+    newsletterEyebrow: 'A little wanderlust',
+    newsletterHeading: 'Good things on the horizon.',
+    copyright: `${site.name}. Thoughtfully crafted journeys.`,
+    legalLinks: [{ label: 'Privacy', href: '/privacy' }, { label: 'Terms', href: '/terms' }],
+    note: 'Made for the way you travel.',
+  },
+  newsletter: {
+    label: 'Email address for the travel newsletter',
+    placeholder: 'Your email address',
+    submitLabel: 'Join the newsletter',
+    description: 'Occasional inspiration. A considered escape from your inbox.',
+    success: 'You’re on the demo list. Newsletter delivery will be available when we launch.',
+  },
+};
