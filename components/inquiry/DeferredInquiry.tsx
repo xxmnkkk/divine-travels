@@ -55,7 +55,7 @@ const LazyInquiryForm = dynamic<LazyInquiryProps>(() => import("./InquiryForm").
   function MountedInquiry({ focusOnMount }: LazyInquiryProps) {
     const formRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
-      if (focusOnMount) formRef.current?.querySelector<HTMLSelectElement>("#inquiry-destination")?.focus();
+      if (focusOnMount) formRef.current?.querySelector<HTMLButtonElement>("#inquiry-destination")?.focus();
     }, [focusOnMount]);
     return <div ref={formRef}><InquiryForm /></div>;
   }

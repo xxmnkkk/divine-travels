@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, CheckCheck, Compass, Feather, LoaderCircle, Sparkles } from "lucide-react";
-import { useForm, useWatch, type FieldErrors } from "react-hook-form";
+import { Controller, useForm, useWatch, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquiryBudgets, inquiryContent as copy, inquiryDestinations, inquiryInterests } from "@/content/inquiry";
 import { inquiryDefaultValues, inquirySchema, inquiryStepFields, type InquiryData } from "@/lib/inquiry";
 import { journeys } from "@/content/journeys";
+import { CustomSelect } from "@/components/ui/CustomSelect";
+import { DatePicker } from "@/components/ui/DatePicker";
 
 const inputClass = "w-full rounded-xl border border-beige bg-ivory px-4 py-3.5 text-sm text-ink shadow-sm outline-none transition-colors placeholder:text-ink-soft focus:border-sea-deep focus:ring-2 focus:ring-sea-deep/20 aria-[invalid=true]:border-[#9C4E3A]";
 const labelClass = "mb-2 block text-sm font-medium text-ink";
@@ -57,6 +59,7 @@ export function InquiryForm() {
   });
   const flexibility = useWatch({ control, name: "flexibility" });
   const interests = useWatch({ control, name: "interests" });
+  const departureDate = useWatch({ control, name: "departureDate" });
   const currentErrors = inquiryStepFields[step].filter((field) => errors[field]);
 
   useEffect(() => {
@@ -198,10 +201,7 @@ export function InquiryForm() {
                 {step === 0 && <>
                   <div>
                     <label htmlFor="inquiry-destination" className={labelClass}>{copy.destination.label} *</label>
-                    <select id="inquiry-destination" required {...register("destination")} aria-invalid={Boolean(errors.destination)} aria-describedby={errors.destination ? "inquiry-destination-error" : undefined} className={inputClass}>
-                      <option value="">{copy.destination.placeholder}</option>
-                      {inquiryDestinations.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                    </select>
+                    <Controller control={control} name="destination" render={({ field }) => <CustomSelect {...field} id="inquiry-destination" required options={inquiryDestinations} placeholder={copy.destination.placeholder} aria-invalid={Boolean(errors.destination)} aria-describedby={errors.destination ? "inquiry-destination-error" : undefined}/>}/>
                     <FieldError name="destination" errors={errors} />
                   </div>
                   <fieldset aria-describedby="inquiry-date-hint">
@@ -217,12 +217,12 @@ export function InquiryForm() {
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label htmlFor="inquiry-departureDate" className={labelClass}>{copy.departureDate}{flexibility === "fixed" ? " *" : ""}</label>
-                      <input id="inquiry-departureDate" type="date" required={flexibility === "fixed"} {...register("departureDate")} aria-invalid={Boolean(errors.departureDate)} aria-describedby={`inquiry-date-hint${errors.departureDate ? " inquiry-departureDate-error" : ""}`} className={`${inputClass} min-w-0`} />
+                      <Controller control={control} name="departureDate" render={({ field }) => <DatePicker {...field} id="inquiry-departureDate" label={copy.departureDate} required={flexibility === "fixed"} aria-invalid={Boolean(errors.departureDate)} aria-describedby={`inquiry-date-hint${errors.departureDate ? " inquiry-departureDate-error" : ""}`}/>}/>
                       <FieldError name="departureDate" errors={errors} />
                     </div>
                     <div>
                       <label htmlFor="inquiry-returnDate" className={labelClass}>{copy.returnDate}{flexibility === "fixed" ? " *" : ""}</label>
-                      <input id="inquiry-returnDate" type="date" required={flexibility === "fixed"} {...register("returnDate")} aria-invalid={Boolean(errors.returnDate)} aria-describedby={`inquiry-date-hint${errors.returnDate ? " inquiry-returnDate-error" : ""}`} className={`${inputClass} min-w-0`} />
+                      <Controller control={control} name="returnDate" render={({ field }) => <DatePicker {...field} id="inquiry-returnDate" label={copy.returnDate} min={departureDate || undefined} required={flexibility === "fixed"} aria-invalid={Boolean(errors.returnDate)} aria-describedby={`inquiry-date-hint${errors.returnDate ? " inquiry-returnDate-error" : ""}`}/>}/>
                       <FieldError name="returnDate" errors={errors} />
                     </div>
                   </div>
@@ -237,10 +237,7 @@ export function InquiryForm() {
                   </div>
                   <div>
                     <label htmlFor="inquiry-budget" className={labelClass}>{copy.budget.label} *</label>
-                    <select id="inquiry-budget" required {...register("budget")} aria-invalid={Boolean(errors.budget)} aria-describedby={`inquiry-budget-hint${errors.budget ? " inquiry-budget-error" : ""}`} className={inputClass}>
-                      <option value="">{copy.budget.placeholder}</option>
-                      {inquiryBudgets.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
-                    </select>
+                    <Controller control={control} name="budget" render={({ field }) => <CustomSelect {...field} id="inquiry-budget" required options={inquiryBudgets} placeholder={copy.budget.placeholder} aria-invalid={Boolean(errors.budget)} aria-describedby={`inquiry-budget-hint${errors.budget ? " inquiry-budget-error" : ""}`}/>}/>
                     <p id="inquiry-budget-hint" className="mt-2 text-xs leading-relaxed text-ink-soft">{copy.budget.hint}</p>
                     <FieldError name="budget" errors={errors} />
                   </div>

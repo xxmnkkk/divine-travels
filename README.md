@@ -24,7 +24,7 @@ npm start
 
 `npm run lint` treats warnings as failures. `npm run build` creates the production app; `npm start` serves that build. The inquiry API needs a Next.js server or a host with Next.js route-handler support, so a static-only HTML export will not support submissions. Stop the development server before measuring the production build.
 
-`npm test` runs nine inquiry regression checks, including public-host validation behind an internal Next.js bind address, cross-origin rejection, fixed date rules, invalid input, payload limits, and the honeypot. The tests use synthetic preview data and call the actual route handler.
+`npm test` runs nine inquiry regression checks plus three calendar checks, including public-host validation behind an internal Next.js bind address, cross-origin rejection, fixed date rules, invalid input, payload limits, the honeypot, and local-date round trips. The tests use synthetic preview data and call the actual route handler.
 
 ## Project map
 
@@ -37,6 +37,7 @@ npm start
 | `components/content/` | Destination and journey cards, filters, illustration motifs, page sections |
 | `components/sections/` | Process, stories, statistics, FAQ, and supporting home sections |
 | `components/inquiry/` | Three-step inquiry UI and home-page loading boundary |
+| `components/ui/` | Custom dropdown and calendar popover controls |
 | `components/seo/` | Agency JSON-LD, legal-page layout, illustrated 404 ship |
 | `content/` | Typed, editable copy and sample records |
 | `lib/inquiry.ts` | Shared client/server form schema and defaults |
@@ -56,6 +57,7 @@ Copy lives in typed TypeScript files; no CMS or database is required.
 | `content/testimonials.ts` | Five clearly marked illustrative traveler stories |
 | `content/faqs.ts` | Eight questions and answers |
 | `content/inquiry.ts` | Form copy, destination options, INR budget ranges, interest chips |
+| `content/controls.ts` | Calendar labels, hints, and clear/close actions |
 | `content/legal.ts` | Privacy/terms preview explanations and 404 text |
 
 Keep destination and journey slugs unique. A journey’s `destinationSlug` must match a destination. These records feed `generateStaticParams` and the sitemap; rebuild after adding, renaming, or removing records. If you add destinations, also update the inquiry options in `content/inquiry.ts` and add an illustration motif or a photograph. Keep all sample-price and placeholder-testimonial notices until the records have been verified.
@@ -77,6 +79,8 @@ For an external image host, add a narrowly scoped `images.remotePatterns` entry 
 ## Inquiry and newsletter status
 
 The form has destination/dates, travel style, and contact steps. React Hook Form retains answers between steps; Zod validates the same data on the client and server. Fixed dates require departure and return, and calendar validity and date order are checked. Budget ranges are in INR per traveler, excluding international flights.
+
+Destination and budget use custom Radix listboxes with keyboard navigation and typeahead. Dates use a custom DayPicker calendar in a Radix popover, with arrow-key navigation, Escape dismissal, and clear actions. The return calendar disables dates before departure. React Hook Form Controllers keep the controls synchronized with validation and error focus. Date-only values are parsed and serialized in the visitor’s local calendar without UTC conversion; the API still receives `YYYY-MM-DD` strings.
 
 On the home page, the form code loads as visitors approach the inquiry section. Its anchor and contact-page fallback are present in the initial HTML. The contact page renders the form directly; destination and journey links prefill the relevant details.
 

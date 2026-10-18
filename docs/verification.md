@@ -37,3 +37,9 @@ The final mobile audit observed 290,635 bytes of total homepage script transfer,
 ## Preview boundaries
 
 The inquiry endpoint validates and returns demo success; it sends no email and stores no lead. Newsletter submission is also a demo. Reviews, prices, contact details, and operational claims remain clearly marked sample content. See the README for content replacement and delivery integration.
+
+## Custom controls follow-up
+
+Replaced destination/budget selects and both native date inputs with shared custom controls. Browser checks verified arrow-key dropdown selection, required-date errors focusing the custom trigger, calendar month/day keyboard navigation, disabled return dates before departure, date clearing, Escape focus restoration, retained selections across steps, and a successful demo submission. The calendar stayed within the viewport at 360 pixels. All 12 tests cover the inquiry route plus local-calendar date parsing, leap days, and date-only round trips; calendar tests were also run in Kolkata and Los Angeles timezones.
+
+The follow-up production build, lint, and all 12 tests pass. One fresh mobile Lighthouse run retained a homepage performance score of 92 and automated accessibility of 100. A separate contact-page audit scored 100 for automated accessibility with the custom form controls rendered.
