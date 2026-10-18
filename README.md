@@ -117,6 +117,8 @@ The shipped `https://divinetravels.example` fallback is a placeholder. `.example
 
 ## Measure performance before launch
 
+The completed local production checks recorded a **92 mobile performance median** over three Lighthouse runs, **100 desktop performance**, **100 automated accessibility**, and zero layout shift. Settings, behavior checks, preview-indexing context, and bundle measurement limits are recorded in [docs/verification.md](docs/verification.md). Recheck the actual deployment after replacing preview content or adding integrations.
+
 Run a production build and serve it with `npm start`. Test Lighthouse against that server or the intended production host using mobile throttling and at least three runs. Record the median and note the device/network settings. Review the Performance panel for main-thread work, off-screen animation activity, dropped frames, and layout shifts. Check both the static/reduced-motion view and the fully animated view.
 
 The design targets Lighthouse performance of 90+ and an initial hero JavaScript budget under 150 KB, but these are targets, not certified results. Measure compressed, transferred client assets in the production browser Network panel with cache disabled, distinguishing shared libraries from the deferred hero animation chunk. Do not equate total `.next` output or server bundles with the JavaScript a visitor downloads. Re-measure when adding libraries, photos, or new scene effects.
