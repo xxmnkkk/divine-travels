@@ -9,6 +9,7 @@
   --ink-soft: #6b655c;
   --sea: #8fb8c4;
   --sea-deep: #4f8497;
+  --sea-ink: #3f7183;
   --gold: #c9a66b;
   --coral: #e9b8a0;
 }
@@ -22,6 +23,7 @@
   --color-ink-soft: var(--ink-soft);
   --color-sea: var(--sea);
   --color-sea-deep: var(--sea-deep);
+  --color-sea-ink: var(--sea-ink);
   --color-gold: var(--gold);
   --color-coral: var(--coral);
   --font-sans: var(--font-dm-sans);
@@ -57,10 +59,10 @@
   .body-copy { @apply text-[14px] leading-[1.9] text-ink-soft md:text-[15px]; }
   .button-primary { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-gold bg-gold px-7 py-3.5 text-[12px] font-medium tracking-[.02em] text-ink transition-colors duration-300 hover:border-ink hover:bg-ink hover:text-ivory disabled:cursor-not-allowed disabled:opacity-50; }
   .button-secondary { @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-beige bg-ivory/25 px-7 py-3.5 text-[12px] font-medium tracking-[.02em] text-ink transition-colors duration-300 hover:border-ink hover:bg-ivory/80; }
-  .text-link { @apply inline-flex items-center gap-3 border-b border-beige pb-1.5 text-xs font-medium text-ink transition-colors hover:border-sea-deep hover:text-sea-deep; }
+  .text-link { @apply inline-flex items-center gap-3 border-b border-beige pb-1.5 text-xs font-medium text-ink transition-colors hover:border-sea-deep hover:text-sea-ink; }
   .page-intro { @apply bg-sand/40 pb-16 pt-44 md:pb-24 md:pt-52; }
   .field-label { @apply mb-2 block text-xs font-medium text-ink; }
-  .form-input { @apply w-full rounded-xl border border-beige bg-ivory px-4 py-3.5 text-sm text-ink placeholder:text-ink-soft/65 focus:border-sea-deep focus:outline-sea-deep; }
+  .form-input { @apply w-full rounded-xl border border-beige bg-ivory px-4 py-3.5 text-sm text-ink placeholder:text-ink-soft focus:border-sea-deep focus:outline-sea-deep; }
 }
 
 .lenis.lenis-smooth { scroll-behavior: auto !important; }

@@ -1,4 +1,5 @@
 import { Hero } from "@/components/hero/Hero";
+import HeroScene from "@/components/hero/HeroScene";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check, Compass, Headphones, Heart, MapPin } from "lucide-react";
 import { DestinationCard } from "@/components/content/DestinationCard";
@@ -8,16 +9,18 @@ import { TravelJournal } from "@/components/sections/TravelJournal";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Stats } from "@/components/sections/Stats";
 import { FAQ } from "@/components/sections/FAQ";
-import { InquiryForm } from "@/components/inquiry/InquiryForm";
+import { DeferredInquiry } from "@/components/inquiry/DeferredInquiry";
 import { destinations } from "@/content/destinations";
 import { journeys } from "@/content/journeys";
 import { home } from "@/content/home";
+import { AgencySchema } from "@/components/seo/AgencySchema";
 
 const trustIcons = [Heart,MapPin,Headphones,Compass];
 
 export default function Home() {
   return <main id="main-content">
-    <Hero/>
+    <AgencySchema/>
+    <Hero><HeroScene/></Hero>
     <div className="border-y border-beige/65 bg-ivory"><div className="container-shell grid grid-cols-2 gap-x-5 gap-y-5 py-7 md:grid-cols-4 md:gap-7 md:py-8">{home.trust.map((text,i)=>{const Icon=trustIcons[i];return <div key={text} className={`flex items-center justify-center gap-3 ${i>0?"md:border-l md:border-beige":""}`}><Icon size={17} strokeWidth={1.2} className="shrink-0 text-[#8a775b]"/><span className="text-[10px] text-ink-soft md:text-[11px]">{text}</span></div>;})}</div></div>
     <section id="discover" className="section-space"><div className="container-shell"><div className="mb-11 flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow mb-5">{home.destinations.eyebrow}</p><h2 className="section-heading max-w-2xl">{home.destinations.title}<em>{home.destinations.emphasis}</em></h2><p className="body-copy mt-5">{home.destinations.description}</p></div><Link href="/destinations" className="text-link shrink-0 self-start md:mb-1 md:self-auto">{home.destinations.link}<ArrowUpRight size={14}/></Link></div><div className="grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 lg:grid-cols-4">{destinations.map(destination=><DestinationCard key={destination.slug} destination={destination} compact/>)}</div></div></section>
     <section className="section-space bg-sand"><div className="container-shell"><div className="mx-auto max-w-[650px] text-center"><p className="eyebrow mb-5">{home.process.eyebrow}</p><h2 className="section-heading">{home.process.title}<em>{home.process.emphasis}</em></h2><p className="body-copy mx-auto mt-5 max-w-xl">{home.process.description}</p></div><ProcessSteps/></div></section>
@@ -26,6 +29,6 @@ export default function Home() {
     <Testimonials/>
     <Stats/>
     <section className="section-space border-t border-beige/65"><div className="container-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24"><div><p className="eyebrow mb-5">{home.faq.eyebrow}</p><h2 className="section-heading max-w-md">{home.faq.title}<em>{home.faq.emphasis}</em></h2><p className="body-copy mt-6 max-w-sm">{home.faq.description}</p><Link href="/contact" className="text-link mt-7">{home.faq.link}<ArrowUpRight size={14}/></Link></div><FAQ/></div></section>
-    <InquiryForm/>
+    <DeferredInquiry/>
   </main>;
 }

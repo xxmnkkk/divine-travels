@@ -1,6 +1,6 @@
 function Cloud({ x, y, scale = 1, opacity = 1, extra = false }: { x: number; y: number; scale?: number; opacity?: number; extra?: boolean }) {
   return (
-    <g transform={`translate(${x} ${y}) scale(${scale})`} opacity={opacity} className={extra ? "scene-cloud-extra" : undefined}>
+    <g transform={`translate(${x} ${y}) scale(${scale})`} data-cloud-x={x} data-cloud-scale={scale} opacity={opacity} className={extra ? "scene-cloud-extra" : undefined}>
       <g className="scene-cloud">
         <path d="M-126 21c12-13 30-17 48-14 3-19 19-31 37-29 10-21 43-27 63-10 17-9 40-2 45 16 24-2 41 13 44 28 15-3 33 2 42 10-77 8-194 8-279-1Z" fill="#FFFDF8" fillOpacity=".77" />
         <path d="M-113 25c66-7 158-7 254-2-82 7-165 8-254 2Z" fill="#D9D3C6" fillOpacity=".12" />

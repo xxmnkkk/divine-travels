@@ -7,8 +7,9 @@ import { useForm, useWatch, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { inquiryBudgets, inquiryContent as copy, inquiryDestinations, inquiryInterests } from "@/content/inquiry";
 import { inquiryDefaultValues, inquirySchema, inquiryStepFields, type InquiryData } from "@/lib/inquiry";
+import { journeys } from "@/content/journeys";
 
-const inputClass = "w-full rounded-xl border border-beige bg-ivory px-4 py-3.5 text-sm text-ink shadow-sm outline-none transition-colors placeholder:text-ink-soft/70 focus:border-sea-deep focus:ring-2 focus:ring-sea-deep/20 aria-[invalid=true]:border-[#9C4E3A]";
+const inputClass = "w-full rounded-xl border border-beige bg-ivory px-4 py-3.5 text-sm text-ink shadow-sm outline-none transition-colors placeholder:text-ink-soft focus:border-sea-deep focus:ring-2 focus:ring-sea-deep/20 aria-[invalid=true]:border-[#9C4E3A]";
 const labelClass = "mb-2 block text-sm font-medium text-ink";
 
 const fieldLabels: Partial<Record<keyof InquiryData, string>> = {
@@ -57,6 +58,14 @@ export function InquiryForm() {
   const flexibility = useWatch({ control, name: "flexibility" });
   const interests = useWatch({ control, name: "interests" });
   const currentErrors = inquiryStepFields[step].filter((field) => errors[field]);
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const destination = query.get("destination");
+    if (destination && inquiryDestinations.some(option => option.value === destination)) setValue("destination", destination);
+    const journey = journeys.find(item => item.slug === query.get("journey"));
+    if (journey) setValue("notes", copy.journeyPrefill.replace("{journey}", journey.title));
+  }, [setValue]);
 
   useEffect(() => {
     if (!focusTarget) return;
@@ -129,24 +138,24 @@ export function InquiryForm() {
       <div className="container-shell grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div className="lg:sticky lg:top-36">
           <p className="eyebrow">{copy.eyebrow}</p>
-          <h2 id="inquiry-title" className="section-heading mt-5 max-w-lg">{copy.heading} <em className="font-normal text-sea-deep">{copy.headingEmphasis}</em></h2>
+          <h2 id="inquiry-title" className="section-heading mt-5 max-w-lg">{copy.heading} <em className="font-normal text-sea-ink">{copy.headingEmphasis}</em></h2>
           <p className="body-copy mt-6 max-w-md">{copy.description}</p>
           <div className="mt-9 space-y-6">
             {copy.promises.map((promise, index) => {
               const Icon = index === 0 ? Compass : Feather;
               return <div key={promise.title} className="flex max-w-md gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-beige bg-ivory/60 text-sea-deep"><Icon size={19} strokeWidth={1.5} aria-hidden="true" /></span>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-beige bg-ivory/60 text-sea-ink"><Icon size={19} strokeWidth={1.5} aria-hidden="true" /></span>
                 <div><h3 className="text-sm font-medium text-ink">{promise.title}</h3><p className="mt-1 text-sm leading-relaxed text-ink-soft">{promise.text}</p></div>
               </div>;
             })}
           </div>
-          <p className="mt-10 flex items-center gap-2.5 font-display text-xl italic text-ink-soft"><Sparkles size={16} strokeWidth={1.5} className="text-sea-deep" aria-hidden="true" />{copy.asideNote}</p>
+          <p className="mt-10 flex items-center gap-2.5 font-display text-xl italic text-ink-soft"><Sparkles size={16} strokeWidth={1.5} className="text-sea-ink" aria-hidden="true" />{copy.asideNote}</p>
         </div>
 
         <div className="rounded-3xl border border-beige bg-ivory p-5 shadow-[0_20px_60px_-20px_rgba(43,42,40,0.12)] sm:p-9 lg:p-10">
           {submitted ? (
             <motion.div initial={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : 12 }} animate={{ opacity: 1, y: 0 }} className="flex min-h-[500px] flex-col justify-center py-5">
-              <span className="mb-7 flex h-16 w-16 items-center justify-center rounded-full bg-sand text-sea-deep"><CheckCheck size={28} strokeWidth={1.4} aria-hidden="true" /></span>
+              <span className="mb-7 flex h-16 w-16 items-center justify-center rounded-full bg-sand text-sea-ink"><CheckCheck size={28} strokeWidth={1.4} aria-hidden="true" /></span>
               <p className="eyebrow">{copy.success.eyebrow}</p>
               <h3 ref={successRef} tabIndex={-1} className="mt-4 font-display text-4xl leading-tight text-ink outline-none sm:text-5xl">{copy.success.title}</h3>
               <p className="mt-5 text-sm leading-7 text-ink-soft">{copy.success.description}</p>
