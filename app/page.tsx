@@ -8,6 +8,7 @@ import { TravelJournal } from "@/components/sections/TravelJournal";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Stats } from "@/components/sections/Stats";
 import { FAQ } from "@/components/sections/FAQ";
+import { InquiryForm } from "@/components/inquiry/InquiryForm";
 import { destinations } from "@/content/destinations";
 import { journeys } from "@/content/journeys";
 import { home } from "@/content/home";
@@ -25,5 +26,6 @@ export default function Home() {
     <Testimonials/>
     <Stats/>
     <section className="section-space border-t border-beige/65"><div className="container-shell grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24"><div><p className="eyebrow mb-5">{home.faq.eyebrow}</p><h2 className="section-heading max-w-md">{home.faq.title}<em>{home.faq.emphasis}</em></h2><p className="body-copy mt-6 max-w-sm">{home.faq.description}</p><Link href="/contact" className="text-link mt-7">{home.faq.link}<ArrowUpRight size={14}/></Link></div><FAQ/></div></section>
+    <InquiryForm/>
   </main>;
 }
