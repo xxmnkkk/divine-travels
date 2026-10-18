@@ -5,7 +5,11 @@ const MAX_PAYLOAD_BYTES = 16_384;
 
 export async function POST(request: Request) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin) {
+  // Next.js may use an internal bind address in request.url. The Host header is
+  // the public origin the browser actually reached (including its port).
+  const publicHost = request.headers.get("host") ?? new URL(request.url).host;
+  const originUrl = origin && URL.canParse(origin) ? new URL(origin) : null;
+  if (origin && (!originUrl || !["http:", "https:"].includes(originUrl.protocol) || originUrl.host !== publicHost)) {
     return NextResponse.json({ error: "This form must be submitted from our website." }, { status: 403 });
   }
   if (!request.headers.get("content-type")?.includes("application/json")) {
