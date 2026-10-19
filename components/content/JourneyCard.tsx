@@ -10,7 +10,7 @@ export function JourneyCard({ journey, compact = false }: { journey: Journey; co
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-beige bg-ivory shadow-[0_20px_60px_-35px_rgba(43,42,40,.15)]">
       {destination && <Link href={`/journeys/${journey.slug}`} tabIndex={-1} aria-hidden="true" className={`relative block overflow-hidden ${compact ? 'aspect-[16/10]' : 'aspect-[16/9]'}`}>
-        {destination.image ? <Image src={destination.image} alt="" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" /> : <DestinationArt motif={destination.motif} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />}
+        {destination.image ? <Image src={destination.image} alt="" fill sizes={compact ? "(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(33.33vw - 48px), (max-width: 1279px) calc(33.33vw - 59px), 368px" : "(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(50vw - 62px), (max-width: 1279px) calc(50vw - 78px), 562px"} className={`object-cover ${destination.imageClassName ?? ""} transition-transform duration-700 group-hover:scale-105`} /> : <DestinationArt motif={destination.motif} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />}
         <span className="absolute bottom-4 left-5 rounded-full bg-ivory/85 px-3 py-1.5 text-[10px] uppercase tracking-[.15em] text-ink-soft">{destination.name} · {journey.duration}</span>
       </Link>}
       <div className="flex flex-1 flex-col p-6 md:p-7">

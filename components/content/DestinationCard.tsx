@@ -2,13 +2,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Destination } from '@/content/destinations';
 import { siteCopy } from '@/content/site';
+import { DeferredMedia } from '@/components/ui/DeferredMedia';
 import { DestinationArt } from './DestinationArt';
 
-export function DestinationCard({ destination, compact = false }: { destination: Destination; compact?: boolean }) {
+export function DestinationCard({ destination, compact = false, deferImage = false }: { destination: Destination; compact?: boolean; deferImage?: boolean }) {
+  const photograph = destination.image ? <Image src={destination.image} alt={destination.imageAlt ?? `${destination.name} landscape`} fill sizes={compact ? "(max-width: 479px) calc(100vw - 48px), (max-width: 767px) calc(50vw - 34px), (max-width: 1023px) calc(50vw - 58px), (max-width: 1279px) calc(25vw - 47px), 273px" : "(max-width: 639px) calc(100vw - 48px), (max-width: 767px) calc(50vw - 34px), (max-width: 1023px) calc(50vw - 58px), (max-width: 1279px) calc(25vw - 47px), 273px"} className={`object-cover ${destination.imageClassName ?? ""} transition-transform duration-700 group-hover:scale-105`} /> : null;
+
   return (
     <Link href={`/destinations/${destination.slug}`} className="group block overflow-hidden rounded-3xl border border-beige bg-ivory transition-transform duration-500 hover:-translate-y-1 hover:shadow-card">
       <div className={`relative overflow-hidden ${compact ? 'aspect-[5/4]' : 'aspect-[6/5]'}`}>
-        {destination.image ? <Image src={destination.image} alt={`${destination.name} landscape`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" /> : <DestinationArt motif={destination.motif} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />}
+        {photograph ? (deferImage ? <DeferredMedia>{photograph}</DeferredMedia> : photograph) : <DestinationArt motif={destination.motif} className="h-full w-full transition-transform duration-700 group-hover:scale-105" />}
         <span className="absolute bottom-4 left-4 rounded-full border border-white/40 bg-ivory/75 px-3 py-1 text-[10px] font-medium uppercase tracking-[.16em] text-ink-soft backdrop-blur-sm">{destination.region}</span>
       </div>
       <div className="flex items-center justify-between gap-4 px-5 py-5 md:px-6">

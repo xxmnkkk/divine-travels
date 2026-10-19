@@ -1,4 +1,4 @@
-# Divine Travels verification
+# Divines Travels verification
 
 Verified on 18 October 2026 against the local Next.js production server. These are local laboratory results, not a guarantee for another deployment or device.
 
@@ -36,10 +36,20 @@ The final mobile audit observed 290,635 bytes of total homepage script transfer,
 
 ## Preview boundaries
 
-The inquiry endpoint validates and returns demo success; it sends no email and stores no lead. Newsletter submission is also a demo. Reviews, prices, contact details, and operational claims remain clearly marked sample content. See the README for content replacement and delivery integration.
+The inquiry endpoint validates and returns demo success; it sends no email and stores no lead. Reviews, prices, and operational claims remain clearly marked sample content. The agency’s supplied phone and email are now shown as direct contact links; the footer signup feature has been removed. See the README for content review and delivery integration.
 
 ## Custom controls follow-up
 
 Replaced destination/budget selects and both native date inputs with shared custom controls. Browser checks verified arrow-key dropdown selection, required-date errors focusing the custom trigger, calendar month/day keyboard navigation, disabled return dates before departure, date clearing, Escape focus restoration, retained selections across steps, and a successful demo submission. The calendar stayed within the viewport at 360 pixels. All 12 tests cover the inquiry route plus local-calendar date parsing, leap days, and date-only round trips; calendar tests were also run in Kolkata and Los Angeles timezones.
 
 The follow-up production build, lint, and all 12 tests pass. One fresh mobile Lighthouse run retained a homepage performance score of 92 and automated accessibility of 100. A separate contact-page audit scored 100 for automated accessibility with the custom form controls rendered.
+
+## Logo, contact, and photography follow-up · 19 October 2026
+
+The supplied Divines Travels gold-and-navy logo now appears in navigation, the footer, the favicon, and the social preview. Email and telephone links use the agency’s provided details; no address is displayed. The footer signup feature and its unused component/copy have been removed. The inquiry form remains a clearly labeled demonstration that does not deliver messages.
+
+Eight real, locally hosted WebP photos replace the destination illustrations across destination and journey cards/detail pages, About, and the home travel journal. Sources and licensing are recorded in [photography.md](photography.md). The originally requested illustrated hero is preserved. Source photos total approximately 1.29 MB; responsive Next.js image variants reduce individual transfers.
+
+An initial photo audit exposed early downloads caused by the browser’s native lazy-loading distance. Home destination images now mount within 400 pixels of the viewport, with fixed aspect-ratio space and server-rendered no-JavaScript fallbacks. Browser checks confirmed photos load as visitors reach the cards at desktop and 360-pixel mobile widths, without horizontal overflow or console errors. The mobile menu still opens and closes with Escape. Direct contact links, footer layout, and generated icon/social image were inspected.
+
+The final production build, lint, strict TypeScript check, and all 12 existing tests pass. One final Lighthouse run with the same simulated mobile settings scored **90 performance, 100 accessibility, and 100 best practices**, with **3.6 s LCP, 40 ms TBT, and zero CLS**. The audit observed no destination-photo downloads during the initial hero load. This is one follow-up measurement, not a new three-run median; the table above records the earlier illustration-only baseline.
