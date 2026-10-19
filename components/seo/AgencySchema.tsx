@@ -10,7 +10,7 @@ export function AgencySchema() {
     description: site.description,
     url: absoluteUrl(),
     image: absoluteUrl("/opengraph-image"),
-    logo: absoluteUrl("/images/brand/divines-travels.png"),
+    logo: absoluteUrl("/images/brand/divines-travels-transparent.png"),
     email: site.email,
     telephone: site.phoneHref,
   };

@@ -1,0 +1,9 @@
+# Transparent logo edit
+
+The website uses `/images/brand/divines-travels-transparent.png`, saved at `public/images/brand/divines-travels-transparent.png`. The 1448 × 1086 PNG has a genuine alpha channel, including fully transparent background pixels. The original upload remains at `public/images/brand/divines-travels.png`.
+
+The cutout was created with the built-in `image_gen` tool in background-extraction edit mode, with `transparent_background: true` and the original logo as the edit target. The exact prompt was:
+
+> Use case: background-extraction. Edit target: the supplied Divines Travels logo. Make a precise transparent-background cutout of the EXISTING gold logo, removing only its navy background, including the navy negative space between letters and around the emblem. Preserve the exact original gold D monogram, globe, orbit, airplane, typography, ornaments, metallic highlights, proportions, and relative positions. The integrated text must remain verbatim 'DIVINES' with 'TRAVELS' below it. This is background removal, not a redesign: do not redraw or replace the artwork or lettering. Output genuine PNG alpha transparency with no navy rectangle, colored backplate, white background, shadow plate, or baked checkerboard. Tightly frame the entire logo with a small transparent margin on every side, keeping the complete emblem and both text lines. Do not add any separate text to the right of the logo.
+
+Navigation and footer display the complete artwork with `object-contain`, without a background plate, clipping, or separate text wordmark. The favicon, social preview, and agency schema use the transparent version too. Desktop and 360-pixel mobile layouts were inspected; the navigation home link retains its accessible name. Lint, strict TypeScript, and the production build pass.

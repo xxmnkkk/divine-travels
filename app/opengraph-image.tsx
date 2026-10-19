@@ -15,7 +15,7 @@ export default async function OpenGraphImage() {
       <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, letterSpacing: -1 }}>
         {site.name}
       </div>
-      <img src={logo} alt="" width={154} height={154} style={{ position: "absolute", right: 86, top: 54, borderRadius: 18 }} />
+      <img src={logo} alt="" width={176} height={132} style={{ position: "absolute", right: 86, top: 54, objectFit: "contain" }} />
       <div style={{ display: "flex", marginTop: 50, fontSize: 13, letterSpacing: 4, color: "#6B655C" }}>{layout.navigation.mobileNote.toUpperCase()}</div>
       <div style={{ display: "flex", flexDirection: "column", marginTop: 22, fontSize: 78, lineHeight: 1.08, letterSpacing: -4 }}>
         <div style={{ display: "flex" }}>{home.hero.lineOne}</div>

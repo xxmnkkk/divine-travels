@@ -4,7 +4,7 @@ A bespoke travel consultancy website built with Next.js App Router, TypeScript, 
 
 ## Identity and contact
 
-The brand is **Divines Travels**, using the supplied gold-and-navy logo at `public/images/brand/divines-travels.png`. `components/layout/Brand.tsx` presents a compact navigation variant and a larger footer variant. The favicon and social image also use the supplied artwork; its colors and emblem are not redrawn.
+The brand is **Divines Travels**, using a transparent cutout of the supplied gold logo at `public/images/brand/divines-travels-transparent.png`. The original upload is preserved at `public/images/brand/divines-travels.png`. `components/layout/Brand.tsx` presents the logo alone in navigation and the footer, without a background or adjacent text wordmark. The favicon and social image use the same transparent artwork.
 
 The provided contact details are [info@divinestravels.com](mailto:info@divinestravels.com) and [+91 88265 61219](tel:+918826561219). `content/site.ts` is the source for these details. The footer and contact page expose working email/telephone links. No postal address or location row is displayed. The footer contains brand, navigation, and contact information without a signup form.
 
@@ -132,7 +132,7 @@ Set `NEXT_PUBLIC_SITE_URL` to the actual public **origin** of your verified agen
 
 The shipped `https://divinestravels.example` fallback is a staging placeholder. `.example` sites and Vercel preview deployments are intentionally `noindex`, and their robots file disallows crawling. The email domain does not change the canonical origin automatically. With a verified real site domain and a production deployment, normal marketing pages become indexable. Review staging controls on other hosting platforms. Privacy and terms preview pages remain `noindex` until replaced with reviewed operational documents and their explicit `noIndex` options are removed; they are excluded from the sitemap for now. Those pages are explanations of the preview, not completed launch-ready legal documents.
 
-`app/opengraph-image.tsx` generates a 1200×630 branded image without external image/font requests; its renderer uses supported JSX styles rather than Tailwind. `app/icon.tsx` generates the favicon from the supplied logo through `lib/brand-image.ts`. Rebuild after replacing the logo and check navigation/footer crops, icon legibility, and the social image. Add business details or ratings to JSON-LD only when they are factual; the schema deliberately omits unverified address details and reviews.
+`app/opengraph-image.tsx` generates a 1200×630 branded image without external image/font requests; its renderer uses supported JSX styles rather than Tailwind. `app/icon.tsx` generates the favicon from the transparent logo through `lib/brand-image.ts`. Rebuild after replacing the logo and check navigation/footer fit, icon legibility, and the social image. The background-removal prompt and asset details are recorded in [docs/logo-edit.md](docs/logo-edit.md). Add business details or ratings to JSON-LD only when they are factual; the schema deliberately omits unverified address details and reviews.
 
 ## Measure performance before launch
 

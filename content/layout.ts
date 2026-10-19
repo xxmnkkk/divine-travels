@@ -3,8 +3,6 @@ import { site } from './site';
 export const layout = {
   brand: {
     homeLabel: `${site.name} home`,
-    firstWord: 'Divines',
-    secondWord: 'Travels',
   },
   navigation: {
     links: site.nav,
