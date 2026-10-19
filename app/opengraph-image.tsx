@@ -2,18 +2,20 @@ import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
 import { home } from "@/content/home";
 import { layout } from "@/content/layout";
+import { brandImageData } from "@/lib/brand-image";
 
 export const alt = `${site.name} — ${home.hero.lineOne} ${home.hero.emphasis}${home.hero.lineTwo}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const logo = await brandImageData();
   return new ImageResponse(
     <div style={{ width: "100%", height: "100%", display: "flex", position: "relative", flexDirection: "column", background: "#FFFDF8", color: "#2B2A28", padding: "70px 86px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, letterSpacing: -1 }}>
-        <svg width="45" height="48" viewBox="0 0 64 64" fill="none"><path d="M13 36a19 19 0 0 1 38 0M20 36a12 12 0 0 1 24 0M32 7v6M10 17l5 5M54 17l-5 5" stroke="#B89F7D" strokeWidth="2" strokeLinecap="round"/><path d="M9 41c8-6 15 6 23 0s15 6 23 0M15 49c6-5 11 5 17 0s11 5 17 0" stroke="#4F8497" strokeWidth="2" strokeLinecap="round"/></svg>
         {site.name}
       </div>
+      <img src={logo} alt="" width={154} height={154} style={{ position: "absolute", right: 86, top: 54, borderRadius: 18 }} />
       <div style={{ display: "flex", marginTop: 50, fontSize: 13, letterSpacing: 4, color: "#6B655C" }}>{layout.navigation.mobileNote.toUpperCase()}</div>
       <div style={{ display: "flex", flexDirection: "column", marginTop: 22, fontSize: 78, lineHeight: 1.08, letterSpacing: -4 }}>
         <div style={{ display: "flex" }}>{home.hero.lineOne}</div>

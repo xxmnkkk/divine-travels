@@ -3,7 +3,7 @@ import { site } from './site';
 export const layout = {
   brand: {
     homeLabel: `${site.name} home`,
-    firstWord: 'Divine',
+    firstWord: 'Divines',
     secondWord: 'Travels',
   },
   navigation: {
@@ -31,20 +31,14 @@ export const layout = {
     contactHeading: 'Let’s talk travel',
     contactLink: 'Meet your consultant',
     email: site.email,
-    contactNote: 'Contact details coming soon',
-    contactLabel: `Contact ${site.name}`,
-    storiesLabel: 'Explore our travel stories',
-    newsletterEyebrow: 'A little wanderlust',
-    newsletterHeading: 'Good things on the horizon.',
+    emailHref: `mailto:${site.email}`,
+    emailLabel: 'Email us',
+    phone: site.phone,
+    phoneHref: `tel:${site.phoneHref}`,
+    phoneLabel: 'Call us',
     copyright: `${site.name}. Thoughtfully crafted journeys.`,
+    legalLabel: 'Legal information',
     legalLinks: [{ label: 'Privacy', href: '/privacy' }, { label: 'Terms', href: '/terms' }],
     note: 'Made for the way you travel.',
-  },
-  newsletter: {
-    label: 'Email address for the travel newsletter',
-    placeholder: 'Your email address',
-    submitLabel: 'Join the newsletter',
-    description: 'Occasional inspiration. A considered escape from your inbox.',
-    success: 'You’re on the demo list. Newsletter delivery will be available when we launch.',
   },
 };

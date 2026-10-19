@@ -4,15 +4,16 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { createMetadata, siteUrl } from "@/lib/seo";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const display = Cormorant_Garamond({ subsets: ["latin"], weight: "variable", style: ["normal", "italic"], variable: "--font-cormorant", display: "swap" });
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
 
 export const metadata: Metadata = {
-  ...createMetadata({ title: "Divine Travels — Journeys, beautifully planned.", description: "Thoughtfully crafted journeys, planned around you. Discover bespoke travel with a dedicated consultant, local insight, and room to explore." }),
+  ...createMetadata({ title: `${site.name} — Journeys, beautifully planned.`, description: "Thoughtfully crafted journeys, planned around you. Discover bespoke travel with a dedicated consultant, local insight, and room to explore." }),
   metadataBase: new URL(siteUrl),
-  title: { default: "Divine Travels — Journeys, beautifully planned.", template: "%s | Divine Travels" },
+  title: { default: `${site.name} — Journeys, beautifully planned.`, template: `%s | ${site.name}` },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

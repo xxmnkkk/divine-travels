@@ -10,7 +10,7 @@ export const privacyContent: LegalPageContent = {
   eyebrow: "A NOTE ABOUT THIS PREVIEW",
   title: "Your details, thoughtfully considered.",
   description: "How the demonstration website currently handles the information entered here.",
-  notice: "Preview information only. A complete agency privacy notice must be published before live inquiries, subscriptions, or bookings are enabled.",
+  notice: "Preview information only. A complete agency privacy notice must be published before live inquiries or bookings are enabled.",
   sections: [
     {
       title: "The trip planning preview",
@@ -21,12 +21,12 @@ export const privacyContent: LegalPageContent = {
       paragraphs: ["Your answers remain in the form as you move between its steps. This project does not use browser storage to retain your trip brief after the form is reset or the page is reloaded. Please avoid entering passport, payment, or other sensitive information in this preview."],
     },
     {
-      title: "Newsletter and technical information",
-      paragraphs: ["The newsletter field is a local demonstration. It checks the email format in your browser and displays a preview message; it does not create a subscription.", "No analytics or advertising integration is configured in this project. Hosting providers may keep technical request logs, and external websites linked from this site operate independently. Actual hosting and provider practices must be documented by the operator before launch."],
+      title: "Technical information",
+      paragraphs: ["No analytics or advertising integration is configured in this project. Hosting providers may keep technical request logs, and external websites linked from this site operate independently. Actual hosting and provider practices must be documented by the operator before launch."],
     },
     {
       title: "Before the agency goes live",
-      paragraphs: ["The published notice will need to identify the actual operator, working contact details, data purposes, service providers, retention practices, and applicable choices or request procedures. Those operational details have not been confirmed in this preview. The contact information currently shown elsewhere on the site is placeholder information."],
+      paragraphs: ["The published notice will need to identify the operator, data purposes, service providers, retention practices, and applicable choices or request procedures. Those operational details must be confirmed before live form submissions are enabled. To contact Divines Travels directly, use the email address or phone number published on this website."],
     },
   ],
 };
@@ -39,7 +39,7 @@ export const termsContent: LegalPageContent = {
   sections: [
     {
       title: "An invitation to imagine",
-      paragraphs: ["Divine Travels is presented here as a bespoke travel consultancy concept. Journeys, brand story, contact details, and traveler accounts include sample material. Testimonials are illustrative placeholders, rather than verified customer reviews."],
+      paragraphs: ["This website presents Divines Travels as a bespoke travel consultancy. Journeys, brand story, and traveler accounts include sample material. Testimonials are illustrative placeholders, rather than verified customer reviews."],
     },
     {
       title: "Sample routes and prices",
@@ -47,7 +47,7 @@ export const termsContent: LegalPageContent = {
     },
     {
       title: "No bookings through this preview",
-      paragraphs: ["The website does not accept payments or confirm bookings. The inquiry form validates a demonstration trip brief; it does not deliver a request to a consultant. The newsletter does not create a subscription."],
+      paragraphs: ["The website does not accept payments or confirm bookings. The inquiry form validates a demonstration trip brief; it does not deliver a request to a consultant."],
     },
     {
       title: "Details to confirm before booking",
@@ -55,7 +55,7 @@ export const termsContent: LegalPageContent = {
     },
     {
       title: "Further reading and contact",
-      paragraphs: ["Links to official tourism guidance are provided for background reading. Check current entry requirements, travel conditions, and supplier terms when planning a real journey. Replace the placeholder contact details with verified agency details before relying on this site for a service request."],
+      paragraphs: ["Links to official tourism guidance are provided for background reading. Check current entry requirements, travel conditions, and supplier terms when planning a real journey. For a service request, call or email Divines Travels directly; the website’s trip planner is still a demonstration."],
     },
   ],
 };
@@ -68,4 +68,4 @@ export const notFoundContent = {
   destinations: "Explore destinations",
 } as const;
 
-export const legalNavigation = { home: "Back to Divine Travels", privacy: "Privacy preview", terms: "Terms preview" } as const;
+export const legalNavigation = { home: "Back to Divines Travels", privacy: "Privacy preview", terms: "Terms preview" } as const;

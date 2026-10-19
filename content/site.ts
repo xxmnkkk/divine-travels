@@ -1,15 +1,13 @@
 const established = 2025;
 
 export const site = {
-  name: 'Divine Travels',
+  name: 'Divines Travels',
   established,
-  description: 'Thoughtfully tailored journeys, personally planned around you. Explore a world of possibilities with Divine Travels.',
-  url: 'https://divinetravels.example',
-  email: 'hello@divinetravels.example',
-  phone: '+91 00000 00000',
-  phoneHref: '+910000000000',
-  location: 'India · Traveling everywhere',
-  contactNote: 'Contact details are placeholders for this website preview.',
+  description: 'Thoughtfully tailored journeys, personally planned around you. Explore a world of possibilities with Divines Travels.',
+  url: 'https://divinestravels.example',
+  email: 'info@divinestravels.com',
+  phone: '+91 88265 61219',
+  phoneHref: '+918826561219',
   nav: [
     { label: 'Destinations', href: '/destinations' },
     { label: 'How it works', href: '/how-it-works' },
@@ -47,11 +45,7 @@ export const site = {
   statsDisclaimer: 'Preview figures describe the sample collection; they are not agency performance claims.',
   footer: {
     description: 'The world, at your pace. Thoughtful journeys, personally planned.',
-    newsletterTitle: 'A little inspiration, now and then.',
-    newsletterDescription: 'Journeys worth considering, sent with care.',
-    newsletterPlaceholder: 'Your email address',
-    newsletterDisclaimer: 'Preview only. Newsletter subscriptions are not yet connected.',
-    copyright: 'Divine Travels. Every journey begins with a conversation.',
+    copyright: 'Divines Travels. Every journey begins with a conversation.',
   },
 };
 
@@ -68,8 +62,8 @@ export const siteCopy = {
   journeysPage: { eyebrow: 'Ideas, not itineraries set in stone', title: 'Every great journey starts somewhere.', description: 'Consider these thoughtfully paced routes an invitation. We can change the places, the stays, the details and the number of slow mornings.', priceNote: 'Illustrative prices per person, based on two sharing. These are planning examples, not live offers. International flights, visas and insurance are excluded unless specified in your personalized proposal.' },
   journeyDetail: { eyebrow: 'A journey to make your own', highlights: 'A few of the things to look forward to', itineraryEyebrow: 'The shape of your days', itineraryTitle: 'Thoughtful beginnings. Open possibilities.', itineraryNote: 'This is an illustrative itinerary. Your proposal will confirm the route, inclusions, availability and price before you book.', ctaTitle: 'Start with this idea. Make it entirely yours.', cta: 'Tailor this journey', pricePrefix: 'Illustrative range', priceUnit: 'per person · two sharing', back: 'All sample journeys', durationLabel: 'Suggested duration' },
   howPage: { eyebrow: 'From first thought to a fond memory', title: 'Beautiful journeys begin with good listening.', description: 'Travel planning should feel like a conversation with someone who understands you. We bring care, local perspective and a clear process to every step.', detailTitle: 'The time to get the details right.', detailDescription: 'You may come to us with a carefully saved map or a single wish. Either is a good beginning. Together, we decide what is essential, where to be flexible and which moments deserve a little more time.', promises: ['A real conversation before a proposed route.', 'A clear itinerary and quote to review in your own time.', 'Thoughtful refinements before you confirm.', 'The practical information you need before you travel.'], ctaTitle: 'Your first step is a small one.', cta: 'Tell us about your trip' },
-  aboutPage: { eyebrow: 'The people behind the planning', title: 'For the way you see the world.', intro: 'Divine Travels began with a simple idea: a journey feels different when someone takes the time to understand you.', story: 'The view matters. So does the room you return to, the guide who notices your curiosity, and the afternoon you did not fill with plans. We bring those details together with care, creating space for travel to feel personal.', secondStory: 'We are building a consultancy around good listening, thoughtful local relationships and honest advice. Our role is to help you make considered choices, then bring the moving parts together in a way that feels easy.', quote: 'The best itinerary leaves room for a little of you.', note: 'Brand story is original sample copy for this preview. Team profiles, credentials and operating details should be verified before publication.', valuesEyebrow: 'What guides us', valuesTitle: 'A few things we care about.', ctaTitle: 'A conversation is a good place to start.', cta: 'Plan with us' },
+  aboutPage: { eyebrow: 'The people behind the planning', title: 'For the way you see the world.', intro: 'Divines Travels began with a simple idea: a journey feels different when someone takes the time to understand you.', story: 'The view matters. So does the room you return to, the guide who notices your curiosity, and the afternoon you did not fill with plans. We bring those details together with care, creating space for travel to feel personal.', secondStory: 'We are building a consultancy around good listening, thoughtful local relationships and honest advice. Our role is to help you make considered choices, then bring the moving parts together in a way that feels easy.', quote: 'The best itinerary leaves room for a little of you.', note: 'Brand story is original sample copy for this preview. Team profiles, credentials and operating details should be verified before publication.', valuesEyebrow: 'What guides us', valuesTitle: 'A few things we care about.', ctaTitle: 'A conversation is a good place to start.', cta: 'Plan with us' },
   storiesPage: { eyebrow: 'Illustrative stories', title: 'Some journeys stay with you.', description: 'A few imagined accounts of the kind of thoughtful, personal travel we aim to create. All names and testimonials below are placeholders, not verified reviews.', label: 'Placeholder testimonial', ctaTitle: 'What will your story look like?', cta: 'Begin your journey' },
-  contactPage: { eyebrow: 'We are here to listen', title: 'Let’s start with a conversation.', description: 'Tell us where you would like to go and what a good journey means to you. A little detail is all it takes to begin.', asideTitle: 'There is no wrong starting point.', asideDescription: 'A honeymoon. A long-awaited family holiday. A destination you cannot quite choose. Your ideas do not need to be finished before we begin.', detailsTitle: 'A note about this preview', detailsDescription: 'The inquiry form and contact details are demonstration placeholders. Connect the form to an agency inbox and replace these details before launch.', emailLabel: 'Email', phoneLabel: 'Phone', locationLabel: 'Based in' },
+  contactPage: { eyebrow: 'We are here to listen', title: 'Let’s start with a conversation.', description: 'Tell us where you would like to go and what a good journey means to you. A little detail is all it takes to begin.', asideTitle: 'There is no wrong starting point.', asideDescription: 'A honeymoon. A long-awaited family holiday. A destination you cannot quite choose. Your ideas do not need to be finished before we begin.', detailsTitle: 'A note about the trip planner', detailsDescription: 'The trip planner below is a demonstration. It validates your brief but does not send a message to our team. To speak with us, please call or email using the details here.', emailLabel: 'Email', phoneLabel: 'Phone' },
   cards: { destinationLink: 'Explore', journeyLink: 'View itinerary', journeyPricePrefix: 'Indicative from', journeyPriceUnit: 'per person', duration: 'Suggested stay' },
 };

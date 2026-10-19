@@ -30,7 +30,7 @@ export const home = {
     eyebrow: "THE DIVINE DIFFERENCE", title: "The luxury of feeling ", emphasis: "understood.",
     description: "Travel should feel like an extension of who you are. The slow mornings. The unexpected detours. The little place you’d never have found alone.",
     second: "We bring a human touch to every journey, connecting your ideas with people who know a place by heart. Nothing rushed. Nothing off the shelf.",
-    link: "Get to know Divine Travels",
+    link: `Get to know ${site.name}`,
     note: "Considered in every detail.",
     values: [ {title:"Your own travel consultant",description:"One person who gets to know you, from the very first hello."}, {title:"People, not just places",description:"Local knowledge that opens the door to a more personal experience."}, {title:"Room to be you",description:"A journey shaped around your taste, budget, and natural rhythm."}, {title:"Thoughtful from start to finish",description:"Care that travels with you, wherever the day takes you."} ],
   },
