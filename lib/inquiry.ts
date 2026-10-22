@@ -31,7 +31,7 @@ export const inquirySchema = z
     email: z.string().trim().email("Enter a valid email address.").max(254, "Keep your email under 254 characters."),
     phone: z.string().trim().max(40, "Keep your phone number under 40 characters."),
     notes: z.string().trim().max(2000, "Keep your notes under 2,000 characters."),
-    website: z.string().max(200),
+    _formCheck: z.string().max(200).optional(),
   })
   .superRefine((data, context) => {
     if (data.flexibility === "fixed") {
@@ -57,7 +57,7 @@ export const inquiryDefaultValues: InquiryData = {
   email: "",
   phone: "",
   notes: "",
-  website: "",
+  _formCheck: "",
 };
 
 export const inquiryStepFields: (keyof InquiryData)[][] = [

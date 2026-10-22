@@ -147,13 +147,46 @@ describe("inquiry endpoint", { concurrency: false }, () => {
     assert.ok(result.fields.email);
     assert.equal(smtp.createTransport.mock.callCount(), 0);
   });
-  it("quietly accepts a honeypot without processing its data", async () => {
+  it("delivers a valid legacy inquiry even when a browser has autofilled the old website field", async () => {
+    const response = await POST(request({
+      ...valid,
+      destination: "japan",
+      flexibility: "fixed",
+      departureDate: "2027-06-01",
+      returnDate: "2027-06-10",
+      website: "Hello Parent",
+      _formCheck: undefined,
+    }));
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { accepted: true, mode: "email" });
+    assert.equal(smtp.createTransport.mock.callCount(), 1);
+    assert.equal(smtp.sendMail.mock.callCount(), 1);
+    const message = smtp.sendMail.mock.calls[0].arguments[0];
+    assert.equal(message.subject, "New trip inquiry — Japan");
+    assert.ok(typeof message.text === "string");
+    assert.ok(message.text.includes("Destination: Japan"));
+    assert.ok(!message.text.includes("Hello Parent"));
+  });
+  it("delivers normal inquiries with an absent, blank, or whitespace-only form check", async () => {
+    for (const _formCheck of [undefined, "", " \t\n "]) {
+      const response = await POST(request({ ...valid, _formCheck }));
+      assert.equal(response.status, 200);
+      assert.deepEqual(await response.json(), { accepted: true, mode: "email" });
+    }
+    assert.equal(smtp.sendMail.mock.callCount(), 3);
+  });
+  it("rejects a populated form check without sending or claiming email delivery", async () => {
     delete process.env.EMAIL_USER;
     delete process.env.EMAIL_PASS;
-    const response=await POST(request({website:"spam"}));
-    assert.equal(response.status,200);
-    assert.deepEqual(await response.json(),{accepted:true,mode:"email"});
+    const response = await POST(request({ ...valid, _formCheck: "automated submission" }));
+    assert.equal(response.status, 400);
+    const result = await response.json();
+    assert.equal(result.accepted, false);
+    assert.equal(typeof result.error, "string");
+    assert.ok(result.error.length > 0);
+    assert.equal(result.mode, undefined);
     assert.equal(smtp.createTransport.mock.callCount(), 0);
+    assert.equal(smtp.sendMail.mock.callCount(), 0);
   });
   it("enforces content type and payload size", async () => {
     assert.equal((await POST(request(valid,{"Content-Type":"text/plain"}))).status,415);

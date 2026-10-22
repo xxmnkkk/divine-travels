@@ -282,9 +282,9 @@ export function InquiryForm() {
                 </>}
               </motion.div>
 
-              <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-                <label htmlFor="inquiry-website">{copy.honeypot}</label>
-                <input id="inquiry-website" autoComplete="off" tabIndex={-1} {...register("website")} />
+              <div hidden aria-hidden="true">
+                <label htmlFor="inquiry-form-check">{copy.honeypot}</label>
+                <input id="inquiry-form-check" type="text" autoComplete="off" tabIndex={-1} data-1p-ignore="true" data-lpignore="true" data-bwignore="true" {...register("_formCheck")} />
               </div>
 
               {submitError && <p role="alert" className="mt-5 rounded-xl border border-[#C6927D] bg-[#FCF2EC] p-4 text-sm leading-relaxed text-[#8A432F]">{submitError}</p>}

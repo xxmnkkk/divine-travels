@@ -34,9 +34,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "We couldn’t read your trip brief." }, { status: 400 });
   }
 
-  // Quietly accept the honeypot so automated submissions receive no useful feedback.
-  if (payload && typeof payload === "object" && "website" in payload && typeof payload.website === "string" && payload.website.trim()) {
-    return NextResponse.json({ accepted: true, mode: "email" });
+  // The legacy "website" field can be autofilled by browsers/password managers.
+  // Ignore it; use the dedicated form check, and never claim email was sent here.
+  if (payload && typeof payload === "object" && "_formCheck" in payload && typeof payload._formCheck === "string" && payload._formCheck.trim()) {
+    return NextResponse.json(
+      { accepted: false, error: "We couldn’t submit your request. Please refresh the form and try again, or contact us directly." },
+      { status: 400 },
+    );
   }
 
   const result = inquirySchema.safeParse(payload);
