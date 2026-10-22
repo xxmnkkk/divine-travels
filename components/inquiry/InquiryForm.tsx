@@ -107,7 +107,7 @@ export function InquiryForm() {
         body: JSON.stringify(data),
       });
       const result = await response.json() as { accepted?: boolean; mode?: string; fields?: Partial<Record<keyof InquiryData, string[]>> };
-      if (!response.ok || !result.accepted || result.mode !== "demo") {
+      if (!response.ok || result.accepted !== true || result.mode !== "email") {
         if (result.fields) {
           const serverErrors: FieldErrors<InquiryData> = {};
           for (const field of Object.keys(inquiryDefaultValues) as (keyof InquiryData)[]) {
@@ -119,7 +119,7 @@ export function InquiryForm() {
           }
           invalidSubmit(serverErrors);
         }
-        setSubmitError(copy.serverError);
+        setSubmitError(response.status === 422 ? copy.validationError : response.status === 429 ? copy.rateLimitError : copy.serverError);
         return;
       }
       setSubmitted(data);
@@ -295,7 +295,7 @@ export function InquiryForm() {
                   {isSubmitting ? <><LoaderCircle size={16} className={reduceMotion ? "" : "animate-spin"} aria-hidden="true" />{copy.submitting}</> : <>{step < 2 ? copy.next : copy.submit}<ArrowRight size={16} aria-hidden="true" /></>}
                 </button>
               </div>
-              <p className="mt-5 text-[10px] leading-relaxed text-ink-soft">{copy.demoNote}</p>
+              <p className="mt-5 text-[10px] leading-relaxed text-ink-soft">{copy.submitNote}</p>
             </form>
           )}
         </div>

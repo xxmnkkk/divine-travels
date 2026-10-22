@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { inquirySchema } from "@/lib/inquiry";
+import { EmailConfigurationError, sendInquiryEmail } from "@/lib/inquiry-email";
+
+export const runtime = "nodejs";
 
 const MAX_PAYLOAD_BYTES = 16_384;
 
@@ -33,7 +36,7 @@ export async function POST(request: Request) {
 
   // Quietly accept the honeypot so automated submissions receive no useful feedback.
   if (payload && typeof payload === "object" && "website" in payload && typeof payload.website === "string" && payload.website.trim()) {
-    return NextResponse.json({ accepted: true, mode: "demo" });
+    return NextResponse.json({ accepted: true, mode: "email" });
   }
 
   const result = inquirySchema.safeParse(payload);
@@ -44,16 +47,16 @@ export async function POST(request: Request) {
     );
   }
 
-  // TODO: connect an email/CRM provider (for example, Resend) before enabling real
-  // inquiries. Only claim delivery after that provider confirms successful handling.
-  // Keep names, email addresses, phone numbers, and free-text notes out of logs.
-  console.info("[inquiry] Demo trip brief validated", {
-    destination: result.data.destination,
-    travelers: result.data.travelers,
-    budget: result.data.budget,
-    interests: result.data.interests.length,
-    hasDates: Boolean(result.data.departureDate),
-  });
-
-  return NextResponse.json({ accepted: true, mode: "demo" });
+  try {
+    await sendInquiryEmail(result.data);
+    return NextResponse.json({ accepted: true, mode: "email" });
+  } catch (error) {
+    // Do not log SMTP errors verbatim: they can include addresses or credentials.
+    const unconfigured = error instanceof EmailConfigurationError;
+    console.error(unconfigured ? "[inquiry] Email is not configured." : "[inquiry] SMTP delivery failed.");
+    return NextResponse.json(
+      { error: "We couldn’t send your trip brief. Please try again or contact us directly." },
+      { status: unconfigured ? 503 : 502 },
+    );
+  }
 }

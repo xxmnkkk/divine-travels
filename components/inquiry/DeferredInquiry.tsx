@@ -40,7 +40,7 @@ function InquiryPlaceholder({ loading = false, failed = false, onReveal }: {
           {hydrated && onReveal && !loading && !failed && <button type="button" onClick={onReveal} className="button-primary mb-5">{copy.deferred.open}<ArrowRight size={16} aria-hidden="true" /></button>}
           <Link href="/contact#plan-your-trip" prefetch={false} className="text-link flex w-fit">{copy.deferred.contact}<ArrowRight size={14} aria-hidden="true" /></Link>
           <noscript><p className="mt-4 text-xs leading-6 text-ink-soft">{copy.deferred.noScript}</p></noscript>
-          <p className="mt-5 text-[10px] leading-relaxed text-ink-soft">{copy.demoNote}</p>
+          <p className="mt-5 text-[10px] leading-relaxed text-ink-soft">{copy.submitNote}</p>
         </div>
       </div>
     </div>

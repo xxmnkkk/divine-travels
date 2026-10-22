@@ -8,7 +8,7 @@ The brand is **Divines Travels**, using a transparent cutout of the supplied gol
 
 The provided contact details are [info@divinestravels.com](mailto:info@divinestravels.com) and [+91 88265 61219](tel:+918826561219). `content/site.ts` is the source for these details. The footer and contact page expose working email/telephone links. No postal address or location row is displayed. The footer contains brand, navigation, and contact information without a signup form.
 
-These direct contact links are separate from the website’s **demonstration inquiry form**, which still sends no message to the team.
+The website’s inquiry form also sends a trip brief to the configured agency inbox through Gmail SMTP. The sending account and recipient are server configuration; they do not change the public contact details automatically.
 
 ## Run locally
 
@@ -32,7 +32,7 @@ npm start
 
 `npm run lint` treats warnings as failures. `npm run build` creates the production app; `npm start` serves that build. The inquiry API needs a Next.js server or a host with Next.js route-handler support, so a static-only HTML export will not support submissions. Stop the development server before measuring the production build.
 
-`npm test` runs nine inquiry regression checks plus three calendar checks, including public-host validation behind an internal Next.js bind address, cross-origin rejection, fixed date rules, invalid input, payload limits, the honeypot, and local-date round trips. The tests use synthetic preview data and call the actual route handler.
+`npm test` runs inquiry and calendar regression checks, including public-host validation behind an internal Next.js bind address, cross-origin rejection, fixed date rules, invalid input, payload limits, the honeypot, and local-date round trips. Use synthetic data and a mocked transport for automated mail checks; a real SMTP send is a separate integration check.
 
 ## Project map
 
@@ -91,7 +91,7 @@ When replacing or adding a photo:
 
 Local photos require no remote image-host configuration. If switching to an external host, add a narrowly scoped `images.remotePatterns` entry in `next.config.ts` for its actual HTTPS host and path.
 
-## Inquiry status
+## Inquiry delivery and server configuration
 
 The form has destination/dates, travel style, and contact steps. React Hook Form retains answers between steps; Zod validates the same data on the client and server. Fixed dates require departure and return, and calendar validity and date order are checked. Budget ranges are in INR per traveler, excluding international flights.
 
@@ -99,16 +99,32 @@ Destination and budget use custom Radix listboxes with keyboard navigation and t
 
 On the home page, the form code loads as visitors approach the inquiry section. Its anchor and contact-page fallback are present in the initial HTML. The contact page renders the form directly; destination and journey links prefill the relevant details.
 
-`POST /api/inquiry` currently validates a JSON payload and returns `{ accepted: true, mode: 'demo' }`. It **does not send email, create a CRM lead, or save an inquiry**. The UI states that clearly. The server rejects oversized payloads, invalid origins and invalid fields, quietly accepts the honeypot, and logs only limited trip metadata rather than contact details or notes. Infrastructure request logging is separate and must be reviewed with the eventual host.
+`POST /api/inquiry` validates the JSON payload, then uses Nodemailer to send **one email to the configured inbox** through `smtp.gmail.com`, port **465**, with `secure: true` (TLS from connection start). The message includes plain text and branded HTML with escaped visitor content. It contains the destination, departure/return dates, date flexibility, traveler count, budget, interests, name, email, optional phone, and notes. The authenticated account is the `From` address; the visitor’s address is `Reply-To`, so the team can reply directly.
 
-To enable real inquiries:
+The API returns `{ accepted: true, mode: 'email' }` only after SMTP accepts the message for the configured recipient. Acceptance does not prove inbox placement, that the team has read the message, or that a trip is booked. No confirmation email is sent to the visitor, and this application does not create a CRM record or save the brief in a database. Emails may be retained by the sending/receiving mailbox providers and the agency’s email processes; no retention period has been verified or enforced by this application.
 
-1. Implement the marked email/CRM TODO in `app/api/inquiry/route.ts` using server-only credentials, verified sender details, and the actual agency inbox.
-2. Await the provider’s successful response before returning a delivery-confirmation state. Handle provider failures with a retryable error while retaining form answers. Keep the current demo wording until this is verified end to end.
-3. Update the API response contract and form success copy together, add delivery/error checks, and define suitable abuse controls for the public deployment.
-4. Publish a privacy notice that matches the actual operator, providers, data flow, retention, and contact process. Review the host’s logs and access controls.
+The existing JSON content-type, origin, payload-size, and field checks remain in place. Honeypot submissions are quietly discarded without sending mail. Missing or invalid mail configuration returns **503**; an SMTP sending/acceptance failure returns **502**. These failures must not show a success state, and the form retains answers for a retry. Infrastructure and email-provider logging are separate from the application and must be reviewed for the actual deployment.
 
-Do not collect passport or payment details in the trip brief. To contact the agency now, use the provided email or phone number rather than treating the demo confirmation as message delivery.
+Configure these variables in the project-root, ignored `.env.local` for local use, or in the hosting platform’s **server environment** for production:
+
+| Variable | Purpose |
+| --- | --- |
+| `EMAIL_USER` | Gmail or Google Workspace account used to authenticate and send the message |
+| `EMAIL_PASS` | That account’s Gmail app password; app passwords require Google 2-Step Verification |
+| `EMAIL_TO` | Single inbox that receives trip briefs; if omitted or blank, defaults to `EMAIL_USER` |
+
+The committed `.env.example` contains blank mail values. Keep real values in ignored local configuration or the host’s secret settings. Never add a `NEXT_PUBLIC_` prefix to mail credentials, put them in client code, or publish them in screenshots, test records, or documentation. For account setup and transport details, see Nodemailer’s official [Gmail guide](https://nodemailer.com/guides/using-gmail) and [SMTP transport reference](https://nodemailer.com/smtp).
+
+After changing credentials or the recipient, restart the local Next.js server. In production, update the server environment and restart or redeploy the application so its running instances receive the new values; the values are not browser configuration. The host must allow outbound SMTP on port 465. Local test credentials are not production configuration.
+
+To verify a deployment:
+
+1. Confirm the sending account and receiving inbox with the operator, configure the three variables, and restart the server. Use synthetic trip details for the test.
+2. Submit the form and check for the email-mode success response. Independently inspect the configured inbox and spam folder; confirm every trip/contact field appears, both message formats are readable, and replying addresses the visitor rather than the sending account.
+3. In an isolated test environment, check missing configuration and simulated SMTP rejection. Confirm 503/502 responses, useful form errors, retained answers, and no false success. Run automated checks with a mocked transport rather than sending real email on each test run.
+4. Record the actual test outcome separately in `docs/verification.md`. Recheck delivery after changing the mailbox, credentials, recipient, or deployment host. Review public-form abuse controls, mailbox access, provider practices, and hosting logs with the operator.
+
+Do not collect passport or payment details in the trip brief. The privacy and terms pages remain review previews rather than completed operational legal documents; replace them with reviewed notices matching the actual operator, email providers, data handling, retention, and contact process.
 
 ## Motion and accessibility
 
@@ -147,9 +163,9 @@ The design targets Lighthouse performance of 90+ and an initial hero JavaScript 
 - Set and verify the canonical production domain and hosting environment; check canonical, robots, sitemap, icon, OG image, and social previews on the final host.
 - Verify the provided email/phone links on the final host, confirm the establishment year and operating details, and review any unverified support or flexibility claims. Keep the address omitted as requested.
 - Replace illustrative reviews with approved real accounts, or retain their visible placeholder labels. Confirm every price, route, season, inclusion, and source link.
-- Connect and verify email/CRM delivery. Remove form-demo claims only after the underlying behavior changes.
+- Configure the production SMTP account and recipient, verify actual inbox receipt and reply behavior, and check error handling. There is no CRM integration or visitor confirmation email.
 - Publish reviewed privacy and booking terms matching actual operations, and update their indexing options.
 - Run lint, typecheck, build, responsive/keyboard/reduced-motion checks, API failure checks, accessibility checks, and production performance measurements.
 - Confirm photo licenses, final copy, sender credentials, monitoring, deployment logs, and the support process.
 
-No service credentials, live offers, or real customer data are included in this project.
+No service credentials or real customer data belong in tracked project files. Keep local mail credentials in ignored configuration and review the remaining preview offers before launch.

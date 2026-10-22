@@ -36,7 +36,7 @@ The final mobile audit observed 290,635 bytes of total homepage script transfer,
 
 ## Preview boundaries
 
-The inquiry endpoint validates and returns demo success; it sends no email and stores no lead. Reviews, prices, and operational claims remain clearly marked sample content. The agency’s supplied phone and email are now shown as direct contact links; the footer signup feature has been removed. See the README for content review and delivery integration.
+The inquiry endpoint now emails validated trip briefs through Gmail SMTP, as recorded in the 22 October follow-up below. It does not save a lead in an application database or CRM. Reviews, prices, and operational claims remain clearly marked sample content. The agency’s supplied phone and email are shown as direct contact links; the footer signup feature has been removed. See the README for configuration and content review.
 
 ## Custom controls follow-up
 
@@ -59,3 +59,13 @@ The final production build, lint, strict TypeScript check, and all 12 existing t
 Replaced the navy-backed logo display with a genuine transparent PNG cutout and removed the separate text beside the navigation logo. Header and footer now show only the complete supplied logo artwork on the site’s own background. Icon, social preview, and structured-data logo references use the transparent asset. The original upload is retained; the image edit prompt and output details are recorded in [logo-edit.md](logo-edit.md).
 
 Alpha-channel inspection confirms fully transparent background pixels. Desktop and 360-pixel mobile browser checks confirm the image loads, the adjacent text is absent, and there is no horizontal overflow. The generated favicon and social preview were visually inspected. Production build, lint, and strict TypeScript checks pass. This small branding follow-up did not rerun the earlier performance audit or inquiry tests.
+
+## Gmail inquiry delivery · 22 October 2026
+
+Implemented the same Nodemailer/Gmail SMTP pattern and environment variable names as the reference Travel Addresses project: `EMAIL_USER`, `EMAIL_PASS`, and an optional `EMAIL_TO` recipient override. The authenticated mailbox is the sender; replies are addressed to the traveler. Validated trip/contact fields are included in a plain-text and escaped branded HTML message. The API waits for explicit SMTP acceptance for the configured recipient before returning email-mode success. It returns 503 for missing/invalid mail settings and 502 for failed or rejected sends, without logging credentials or trip details. The form retains answers after a failure and its former demo copy has been replaced.
+
+All **26 tests pass**, covering API validation, awaiting delivery, SMTP rejection, empty/wrong/rejected recipients, missing configuration, recipient override/fallback, HTML escaping, complete message fields, authenticated sender and visitor reply address, and calendar rules. Tests use synthetic credentials and a mocked transport; they never send mail. Production build, lint, and strict TypeScript checks pass.
+
+Gmail SMTP authentication was verified with the authorized local test configuration. One synthetic inquiry was then submitted through all three form steps on the local production server. Gmail accepted the test message and the browser displayed “Your trip brief has been sent.” The configured inbox and spam folder were not independently inspected, so this verifies SMTP acceptance rather than inbox placement or reading. No automatic traveler confirmation email is sent.
+
+The local credential file is ignored by Git and restricted to owner access. A scan of 178 generated browser/static-page files found no copy of the supplied password. No test credentials were added to the committed example or public copy. Set the three mail variables in the production server environment, restart/redeploy, and verify the final inbox there. Existing services on port 3000 were left untouched; the temporary verification server used port 3002.
