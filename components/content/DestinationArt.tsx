@@ -15,6 +15,7 @@ const palettes: Record<DestinationMotif, [string, string, string]> = {
   kenya: ['#F0E7CE', '#D6BA84', '#817D59'],
   bali: ['#EDF0DB', '#B7C4A2', '#6D8770'],
   iceland: ['#E8EEEE', '#B3CDD0', '#6C9099'],
+  india: ['#F5ECDD', '#DFC7A8', '#93785A'],
 };
 
 function Motif({ motif }: { motif: DestinationMotif }) {
@@ -52,6 +53,10 @@ function Motif({ motif }: { motif: DestinationMotif }) {
     case 'iceland': return <>
       <path d="m28 169 66-80 39 42 36-66 101 104H28Zm42-50 24-30 21 22-18-3-9 14-18-3Zm75-11 24-43 35 37-21-5-12 12-9-9-17 8ZM35 184q51-10 101 0t103 0M53 198q43-7 86 0t86 0M133 133v32m9-33v41m9-32v27m-17 4q8 8 18 1" />
       <path d="M67 66q32-22 57-4t51-6 58-3M53 53q33-21 66-3t60-8" opacity=".5" />
+    </>;
+    case 'india': return <>
+      <path d="M52 189h196M68 189V98h164v91M60 98h180M75 89h150M105 189v-42q0-25 45-48 45 23 45 48v42M120 189v-40q0-14 30-31 30 17 30 31v40M94 98V77h112v21M88 77q62-47 124 0H88Zm62-47v12m-6-6h12M80 114h14v20H80m126-20h14v20h-14M80 145h14v20H80m126-20h14v20h-14M60 197h180" />
+      <path d="M39 211q52-11 107-4t115-3M82 222q62-7 125-1M105 84h4m13 0h4m13 0h4m13 0h4m13 0h4m13 0h4M70 179h21m118 0h21" opacity=".6" />
     </>;
   }
 }

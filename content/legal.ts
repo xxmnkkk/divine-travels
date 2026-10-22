@@ -47,7 +47,7 @@ export const termsContent: LegalPageContent = {
     },
     {
       title: "Sample routes and prices",
-      paragraphs: ["The routes, durations, seasonal notes, and prices are planning examples. They do not constitute a confirmed quote, live availability, or a reservation. Sample prices are in Indian rupees per person, usually based on two sharing, with international flights, visas, and insurance excluded unless an eventual proposal states otherwise.", "A live agency would confirm suitability, availability, inclusions, accommodation, transport, and the final itinerary with you before a booking is made."],
+      paragraphs: ["The routes, durations, seasonal notes, and prices are planning examples. They do not constitute a confirmed quote, live availability, or a reservation. Sample prices are in Indian rupees per person, usually based on two sharing, with flights, visas, and insurance excluded unless an eventual proposal states otherwise.", "A live agency would confirm suitability, availability, inclusions, accommodation, transport, and the final itinerary with you before a booking is made."],
     },
     {
       title: "Inquiries and bookings",

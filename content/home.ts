@@ -13,7 +13,11 @@ export const home = {
     scroll: "A world waiting for you",
   },
   trust: ["Personally planned", "Local expertise", "24/7 on-trip support", "Flexible possibilities"],
-  destinations: { eyebrow: "THE WORLD, YOUR WAY", title: "Where will your curiosity ", emphasis: "take you?", description: "Some places stay with you. Let’s find yours.", link: "Explore all destinations" },
+  destinations: {
+    eyebrow: "THE WORLD, YOUR WAY", title: "Where will your curiosity ", emphasis: "take you?",
+    description: "From India’s many landscapes to places further afield. Let’s find yours.", link: "Explore all destinations",
+    featuredSlugs: ["italy", "rajasthan", "japan", "kerala", "maldives", "ladakh", "kenya", "andaman-islands"],
+  },
   process: {
     eyebrow: "A THOUGHTFUL WAY TO TRAVEL",
     title: "Your dream. Our expertise. ", emphasis: "One beautiful journey.",
@@ -25,7 +29,12 @@ export const home = {
       { title: "Go, with peace of mind", description: "Settle into the moment. Your consultant and local team are only a call away." },
     ],
   },
-  journeys: { eyebrow: "A LITTLE INSPIRATION", title: "Extraordinary places. ", emphasis: "Your kind of pace.", description: "A few thoughtfully imagined journeys. Each one is a starting point, never a set itinerary.", link: "View all journeys", note: "Illustrative itineraries and guide prices, per person. Your final quote is tailored to your dates and preferences." },
+  journeys: {
+    eyebrow: "A LITTLE INSPIRATION", title: "Extraordinary places. ", emphasis: "Your kind of pace.",
+    description: "India and further afield, thoughtfully imagined. Every route is a starting point, never a set itinerary.",
+    link: "View all journeys", note: "Illustrative itineraries and guide prices, per person, excluding flights. Your final quote is tailored to your dates and preferences.",
+    featuredSlugs: ["the-slow-italian-summer", "rajasthan-palaces-and-quiet-courtyards", "kerala-backwaters-and-slow-mornings"],
+  },
   why: {
     eyebrow: "THE DIVINE DIFFERENCE", title: "The luxury of feeling ", emphasis: "understood.",
     description: "Travel should feel like an extension of who you are. The slow mornings. The unexpected detours. The little place you’d never have found alone.",
@@ -41,6 +50,6 @@ export const home = {
     details: "YOUR PACE \u00a0 · \u00a0 YOUR PEOPLE \u00a0 · \u00a0 YOUR PLACE",
   },
   stories: { eyebrow: "MOMENTS THAT STAY", title: "A journey is personal. ", emphasis: "So are the stories.", disclaimer: "Illustrative traveler stories · Placeholder testimonials for design preview", link: "Read more stories" },
-  stats: [ { value:8,suffix:"",label:"Destinations to discover" }, { value:4,suffix:"",label:"Journeys to make your own" }, { value:1,suffix:"",label:"Dedicated point of contact" } ],
+  stats: [ { value:14,suffix:"",label:"Destinations to discover" }, { value:8,suffix:"",label:"Journeys to make your own" }, { value:1,suffix:"",label:"Dedicated point of contact" } ],
   faq: { eyebrow:"A FEW THINGS TO KNOW",title:"A little clarity, ",emphasis:"before you go.",description:"Every journey starts with a conversation. Here are a few answers to get you started.",link:"Have another question?" },
 };

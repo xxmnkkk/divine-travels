@@ -1,6 +1,6 @@
 # Divines Travels
 
-A bespoke travel consultancy website built with Next.js App Router, TypeScript, Tailwind CSS, GSAP, Framer Motion, and Lenis. The illustrated coast is made from inline SVG, with accessible text and controls above it. Eight real destination photographs accompany the travel collection. Journeys, prices, testimonials, and service claims should still be reviewed as preview content before launch.
+A bespoke travel consultancy website built with Next.js App Router, TypeScript, Tailwind CSS, GSAP, Framer Motion, and Lenis. The illustrated coast is made from inline SVG, with accessible text and controls above it. Fourteen real destination photographs accompany the Indian and international travel collection. Journeys, prices, testimonials, and service claims should still be reviewed as preview content before launch.
 
 ## Identity and contact
 
@@ -51,7 +51,7 @@ npm start
 | `lib/inquiry.ts` | Shared client/server form schema and defaults |
 | `lib/seo.ts` | Canonical origin, metadata helper, and preview indexing rules |
 | `public/images/brand/` | Supplied Divines Travels logo |
-| `public/images/destinations/` | Eight optimized, locally hosted WebP destination photographs |
+| `public/images/destinations/` | Fourteen optimized, locally hosted WebP destination photographs |
 | `docs/photography.md` | Photographer credits, source pages, license record, and image descriptions |
 
 ## Edit copy and records
@@ -63,8 +63,8 @@ Copy lives in typed TypeScript files; no CMS or database is required.
 | `content/site.ts` | Agency identity, provided contact details, inner-page copy, shared values |
 | `content/home.ts` | Hero text, home section introductions, calls to action |
 | `content/layout.ts` | Brand labels, navigation, footer, email/telephone labels and links |
-| `content/destinations.ts` | Eight destinations, regions, interests, seasonal sources, routes, photographs, alt text, crops |
-| `content/journeys.ts` | Four sample journeys, indicative INR ranges, highlights, itineraries |
+| `content/destinations.ts` | Fourteen destinations, regions, interests, seasonal sources, routes, photographs, alt text, crops |
+| `content/journeys.ts` | Eight sample journeys, indicative INR ranges, highlights, itineraries |
 | `content/testimonials.ts` | Five clearly marked illustrative traveler stories |
 | `content/faqs.ts` | Eight questions and answers |
 | `content/inquiry.ts` | Form copy, destination options, INR budget ranges, interest chips |
@@ -73,11 +73,13 @@ Copy lives in typed TypeScript files; no CMS or database is required.
 
 Keep destination and journey slugs unique. A journey’s `destinationSlug` must match a destination. These records feed `generateStaticParams` and the sitemap; rebuild after adding, renaming, or removing records. If you add destinations, also update the inquiry options in `content/inquiry.ts` and add an illustration motif or a photograph. Keep all sample-price and placeholder-testimonial notices until the records have been verified.
 
+The India collection covers Rajasthan, Kerala, Goa, Kashmir, Ladakh, and the Andaman Islands. Four domestic sample journeys cover Rajasthan, Kerala, Ladakh, and the Andamans. Destination filters include India; journey filters separate India and international routes. The home page curates eight destinations and three journeys from the full collection. Keep the featured selections and collection statistics in `content/home.ts` and `content/site.ts` consistent when editing the catalog. Destination and journey inquiry links preselect the relevant Indian destination, just as they do for international trips.
+
 Palette tokens and typography utilities live in `app/globals.css`; font configuration lives in `app/layout.tsx`. The original water/focus colors remain separate from darker small-text colors where needed for contrast. Keep ink text on gold buttons and recheck contrast after changing tokens.
 
 ## Maintain destination photography
 
-All eight destinations now have real photographs in `public/images/destinations/`. Their official Unsplash source pages, photographers, license checks, and descriptions are recorded in [docs/photography.md](docs/photography.md). The optimized WebP assets total approximately **1.29 MB**, with a maximum image edge of 1,600 pixels. They are hosted locally; visitors do not need to request the photos from Unsplash. The hero remains an illustration.
+All fourteen destinations have real photographs in `public/images/destinations/`. Their official source pages, photographers, license checks, and descriptions are recorded in [docs/photography.md](docs/photography.md). The optimized WebP assets total approximately **2.06 MiB**, with a maximum image edge of 1,600 pixels. They are hosted locally; visitors do not need to request the photos from the original provider. The hero remains an illustration.
 
 Destination cards and detail pages use `next/image`. Home-page destination photos mount within 400 pixels of the viewport through `DeferredMedia`, avoiding the browser’s much larger native lazy-loading range while preserving image slots and a no-JavaScript fallback. Journey cards and journey detail pages reuse their linked destination’s photograph. If a record has no `image`, the existing SVG motif remains the fallback.
 
@@ -93,7 +95,7 @@ Local photos require no remote image-host configuration. If switching to an exte
 
 ## Inquiry delivery and server configuration
 
-The form has destination/dates, travel style, and contact steps. React Hook Form retains answers between steps; Zod validates the same data on the client and server. Fixed dates require departure and return, and calendar validity and date order are checked. Budget ranges are in INR per traveler, excluding international flights.
+The form has destination/dates, travel style, and contact steps. React Hook Form retains answers between steps; Zod validates the same data on the client and server. Fixed dates require departure and return, and calendar validity and date order are checked. Budget ranges are in INR per traveler, excluding flights.
 
 Destination and budget use custom Radix listboxes with keyboard navigation and typeahead. Dates use a custom DayPicker calendar in a Radix popover, with arrow-key navigation, Escape dismissal, and clear actions. The return calendar disables dates before departure. React Hook Form Controllers keep the controls synchronized with validation and error focus. Date-only values are parsed and serialized in the visitor’s local calendar without UTC conversion; the API still receives `YYYY-MM-DD` strings.
 

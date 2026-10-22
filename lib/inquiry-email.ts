@@ -43,7 +43,7 @@ export function buildInquiryMessage(data: InquiryData, config: InquiryMailConfig
     ["Departure date", data.departureDate || "Not decided"],
     ["Return date", data.returnDate || "Not decided"],
     ["Travelers", String(data.travelers)],
-    ["Budget per traveler", `${budget} · INR, excluding international flights`],
+    ["Budget per traveler", `${budget} · INR, excluding flights`],
     ["Interests", data.interests.length ? data.interests.join(", ") : "No preferences selected"],
     ["Notes", data.notes || "None"],
   ];

@@ -1,4 +1,4 @@
-export type DestinationMotif = 'italy' | 'japan' | 'maldives' | 'greece' | 'morocco' | 'kenya' | 'bali' | 'iceland';
+export type DestinationMotif = 'italy' | 'japan' | 'maldives' | 'greece' | 'morocco' | 'kenya' | 'bali' | 'iceland' | 'india';
 
 export interface ItineraryStep {
   title: string;
@@ -119,6 +119,78 @@ export const destinations: Destination[] = [
       { title: 'Along the south coast', description: 'Follow a considered route past waterfalls and volcanic shores, accompanied by a guide who knows the changing conditions.' },
       { title: 'A quieter final chapter', description: 'Explore a less hurried corner of the country, with flexible days for walking, photography and rest.' },
     ], seasonSource: { label: 'Iceland through the seasons', url: 'https://www.visiticeland.com/article/iceland-in-the-summer/' },
+  },
+  {
+    slug: 'rajasthan', name: 'Rajasthan', region: 'India', eyebrow: 'Palace courtyards & living craft',
+    tagline: 'Behind every courtyard, another story.',
+    description: 'The first light on a Jaipur courtyard. An artisan at work in Jodhpur. An evening table overlooking Udaipur’s lakes. We connect Rajasthan’s celebrated cities with the quieter encounters between them, choosing a few thoughtful bases rather than a different hotel every night.',
+    interests: ['Culture', 'Food & wine', 'Slow travel'], bestTime: 'October to March is generally more comfortable for city walks and countryside stays. Summer heat and the monsoon change the pace, so we shape travel time and outdoor visits around the season.', duration: '8–12 days', motif: 'india',
+    image: '/images/destinations/rajasthan.webp', imageAlt: 'Udaipur’s City Palace glowing beside Lake Pichola at sunset, Rajasthan',
+    itinerary: [
+      { title: 'Jaipur, beyond the palace gates', description: 'Pair an early heritage visit with the city’s living craft traditions, a local kitchen and time to enjoy your courtyard stay.' },
+      { title: 'The lanes and landscapes of Jodhpur', description: 'Explore the old city with a guide, then take a quieter turn into the surrounding countryside without filling every afternoon.' },
+      { title: 'An unhurried finish in Udaipur', description: 'Settle beside the lakes for palace stories, independent workshops and slow evenings. Boat outings follow local conditions and availability.' },
+    ], seasonSource: { label: 'Rajasthan’s climate and seasons', url: 'https://rtdc.tourism.rajasthan.gov.in/Pages/Besttimetovisit.aspx' },
+  },
+  {
+    slug: 'kerala', name: 'Kerala', region: 'India', eyebrow: 'Backwater light & hillside mornings',
+    tagline: 'Follow the water. Find a softer rhythm.',
+    description: 'From Fort Kochi’s old lanes to tea country and palm-lined backwaters, Kerala invites a gentler kind of journey. We balance the changing landscapes with local cooking, considered stays and enough time to enjoy the view from the veranda.',
+    interests: ['Nature', 'Wellness', 'Slow travel'], bestTime: 'November to February is a useful starting point for a varied Kerala journey. Rain can arrive in other seasons, with heavier monsoon periods affecting roads, boating and coastal plans; the route stays responsive to local conditions.', duration: '7–10 days', motif: 'india',
+    image: '/images/destinations/kerala.webp', imageAlt: 'A traditional houseboat cruising palm-lined backwaters in Alappuzha, Kerala',
+    itinerary: [
+      { title: 'A warm introduction to Kochi', description: 'Walk historic neighborhoods with a local guide, visit small galleries and get to know Kerala through a meal shaped around your tastes.' },
+      { title: 'A few days in the hills', description: 'Travel to the Munnar region for tea landscapes, gentle walks and a stay that makes the journey uphill worthwhile. Outings follow the weather.' },
+      { title: 'Life beside the backwaters', description: 'Choose a quiet waterside base near Kumarakom or Alappuzha, with a considered boat outing and time simply to watch the day unfold.' },
+    ], seasonSource: { label: 'Kerala Tourism’s seasonal travel guidance', url: 'https://www.keralatourism.org/faq/20-things-to-know-before-you-visit-kerala' },
+  },
+  {
+    slug: 'goa', name: 'Goa', region: 'India', eyebrow: 'Village lanes & days by the sea',
+    tagline: 'There is more to Goa than a beach day.',
+    description: 'A shaded village lane, a family recipe and a long afternoon beside the Arabian Sea. We find your version of Goa, whether that means a quiet southern beach, a small heritage stay or a few days exploring the state’s food and layered history.',
+    interests: ['Beach', 'Food & wine', 'Slow travel'], bestTime: 'October to March usually brings a drier setting for coast and village days. The June-to-September monsoon offers a different, greener visit; sea activities and seasonal openings depend on local weather and operating guidance.', duration: '5–8 days', motif: 'india',
+    image: '/images/destinations/goa.webp', imageAlt: 'Coconut palms above Cabo de Rama Beach at sunset, South Goa', imageClassName: 'object-[50%_60%]',
+    itinerary: [
+      { title: 'Arrive into your kind of Goa', description: 'Choose a coastal or village base that suits your pace, with the first afternoon kept free for settling in.' },
+      { title: 'Food, homes and local stories', description: 'Meet a guide for heritage lanes and a cooking encounter, leaving room to follow the small places that catch your attention.' },
+      { title: 'A few days without a timetable', description: 'Balance beach walks and long lunches with optional outings. Swimming and time on the water always follow current local advice.' },
+    ], seasonSource: { label: 'Goa’s weather through the year', url: 'https://goa-tourism.com/weather-of-goa/' },
+  },
+  {
+    slug: 'kashmir', name: 'Kashmir', region: 'India', eyebrow: 'Lake mornings & mountain light',
+    tagline: 'Leave room for the light to change.',
+    description: 'A quiet morning on Dal Lake, gardens opening into the mountains and a conversation over kahwa. We build Kashmir around a few well-chosen places, combining Srinagar’s waterways and craft with valley stays that give the landscape time to settle around you.',
+    interests: ['Nature', 'Culture', 'Slow travel'], bestTime: 'Spring and summer suit gardens and valley days, while autumn brings changing foliage. Winter is a different, snow-dependent journey. Mountain roads, weather and current local advisories shape the final route in every season.', duration: '6–9 days', motif: 'india',
+    image: '/images/destinations/kashmir.webp', imageAlt: 'A yellow shikara reflected in Dal Lake beneath hazy mountains, Srinagar',
+    itinerary: [
+      { title: 'Srinagar, gently introduced', description: 'Settle into a considered stay, explore gardens and craft traditions, and choose a quiet shikara outing when conditions allow.' },
+      { title: 'A valley stay with room to pause', description: 'Spend a few days around Pahalgam or another suitable valley base, with guided walks adapted to the season and your preferred pace.' },
+      { title: 'A flexible mountain chapter', description: 'Consider Gulmarg or more time near the lake, balancing access, weather and travel time. Keep the last day relaxed before your departure.' },
+    ], seasonSource: { label: 'Srinagar’s official seasonal planning guide', url: 'https://srinagar.nic.in/plan-your-visit/' },
+  },
+  {
+    slug: 'ladakh', name: 'Ladakh', region: 'India', eyebrow: 'Monastery walls & open skies',
+    tagline: 'A wider horizon. A more considered pace.',
+    description: 'Ladakh’s scale asks you to slow down. Begin with time to acclimatize in Leh, then follow the Indus Valley’s monasteries and the landscapes beyond. We favor realistic distances, experienced local guiding and the freedom to change the route when mountain conditions require it.',
+    interests: ['Nature', 'Culture', 'Adventure'], bestTime: 'The warmer months, broadly May to September, offer more options for a journey. High passes and roads remain seasonal, so access, permits and weather must be checked. At least the first 48 hours in Leh are reserved for acclimatization before higher-altitude travel.', duration: '8–11 days', motif: 'india',
+    image: '/images/destinations/ladakh.webp', imageAlt: 'Snow-dusted mountain peaks near Pangong Lake in Ladakh',
+    itinerary: [
+      { title: 'Begin with acclimatization in Leh', description: 'Keep at least the first 48 hours free of higher-altitude excursions. Settle into your stay and let the journey begin without a sightseeing schedule.' },
+      { title: 'Along the Indus Valley', description: 'Once ready to continue, explore selected monasteries and village landscapes with a local guide, keeping each day deliberately manageable.' },
+      { title: 'Beyond Leh, when conditions allow', description: 'Consider Nubra or another suitable extension after acclimatization, subject to permits, weather and road access. Return to Leh with a buffer before flying onward.' },
+    ], seasonSource: { label: 'Ladakh’s seasons and travel planning', url: 'https://tourism.ladakh.gov.in/' },
+  },
+  {
+    slug: 'andaman-islands', name: 'Andaman Islands', region: 'India', eyebrow: 'Forest shade & island time',
+    tagline: 'A few islands. A little more time.',
+    description: 'Clear-water coves, coastal forest and the gentle rhythm of an island stay. We keep an Andaman journey focused, choosing your base carefully and giving ferries, beach days and the weather the space they need. There is no need to collect an island every day.',
+    interests: ['Beach', 'Nature', 'Honeymoon'], bestTime: 'October to May is a common starting window for an island journey. Rain and changing sea conditions can affect ferries and water activities in any season, especially around the monsoon; transfers and departure buffers are planned accordingly.', duration: '6–9 days', motif: 'india',
+    image: '/images/destinations/andaman-islands.webp', imageAlt: 'Kalapathar Beach framed by coastal trees on Swaraj Dweep in the Andaman Islands',
+    itinerary: [
+      { title: 'An easy arrival on the main island', description: 'Begin in Sri Vijaya Puram, also known as Port Blair, with time to settle in and an onward ferry plan shaped around your flight.' },
+      { title: 'Find your rhythm on Swaraj Dweep', description: 'Make one island your base for forest-fringed beaches, a guided water outing when suitable, and long afternoons without another transfer.' },
+      { title: 'Return with room to spare', description: 'Keep the route flexible and allow time on the main island before your onward flight. Ferry schedules and sea conditions take priority over a fixed checklist.' },
+    ], seasonSource: { label: 'Andaman Tourism’s island travel guidance', url: 'https://www.andamantourism.gov.in/faq.php' },
   },
 ];
 

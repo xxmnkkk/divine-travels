@@ -123,14 +123,14 @@ describe("inquiry email content", () => {
       ["Departure date", inquiry.departureDate],
       ["Return date", inquiry.returnDate],
       ["Travelers", "3"],
-      ["Budget per traveler", "₹4–6 lakh · INR, excluding international flights"],
+      ["Budget per traveler", "₹4–6 lakh · INR, excluding flights"],
       ["Interests", "Culture & history, Food & wine"],
       ["Notes", inquiry.notes],
     ]) {
       assert.ok(text.includes(`${label}: ${value}`), `Missing plain-text detail: ${label}`);
       assert.ok(html.includes(`>${label}</th>`), `Missing HTML detail label: ${label}`);
     }
-    for (const value of [inquiry.email, inquiry.phone, "Italy", "Dates are set", inquiry.departureDate, inquiry.returnDate, "₹4–6 lakh · INR, excluding international flights", "Culture &amp; history, Food &amp; wine"]) {
+    for (const value of [inquiry.email, inquiry.phone, "Italy", "Dates are set", inquiry.departureDate, inquiry.returnDate, "₹4–6 lakh · INR, excluding flights", "Culture &amp; history, Food &amp; wine"]) {
       assert.ok(html.includes(value), `Missing HTML detail value: ${value}`);
     }
     assert.match(html, />3<\/td>/);

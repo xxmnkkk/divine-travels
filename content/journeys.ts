@@ -52,4 +52,44 @@ export const journeys: Journey[] = [
       { title: 'Days 7–10 · Coast into a gentler rhythm', description: 'Finish on the coast, where a small beachfront stay offers space to swim, read and reflect before your journey home.' },
     ],
   },
+  {
+    slug: 'rajasthan-palaces-and-quiet-courtyards', title: 'Palaces and quiet courtyards', destinationSlug: 'rajasthan', duration: '10 days', price: '₹1.2–2.4 lakh',
+    description: 'A considered route through Jaipur, Jodhpur and Udaipur, connecting palace stories with living craft and stays that are worth returning to in the afternoon.',
+    highlights: ['Jaipur with a local guide', 'Jodhpur’s craft and old-city lanes', 'Unhurried lakeside days in Udaipur'],
+    itinerary: [
+      { title: 'Days 1–3 · A personal introduction to Jaipur', description: 'Arrive at a comfortable pace before an early heritage visit, time with local craftspeople and a meal that opens a conversation about Rajasthan’s food traditions.' },
+      { title: 'Days 4–6 · The blue lanes of Jodhpur', description: 'Travel onward with sensible stops, then explore the old city and its fort with a guide. Leave a full afternoon for your stay or an optional countryside outing.' },
+      { title: 'Days 7–10 · Stay a little longer in Udaipur', description: 'Finish with lakeside walks, palace courtyards and small workshops. A boat outing is optional and subject to local conditions; the final morning stays free of a checklist.' },
+    ],
+  },
+  {
+    slug: 'kerala-backwaters-and-slow-mornings', title: 'Backwaters and slow mornings', destinationSlug: 'kerala', duration: '9 days', price: '₹0.9–1.8 lakh',
+    description: 'From Kochi’s historic lanes to Munnar’s tea country and a quiet waterside stay. A Kerala journey with varied landscapes, thoughtful food and room between the plans.',
+    highlights: ['Kochi’s heritage and local kitchens', 'A gentle stay in tea country', 'Backwater time at your own pace'],
+    itinerary: [
+      { title: 'Days 1–2 · Settle into Kochi', description: 'Explore Fort Kochi with a local guide, visit a small gallery or workshop and share a cooking encounter shaped around your tastes. Keep the first evening easy.' },
+      { title: 'Days 3–5 · Mornings in the hills', description: 'Take the scenic route to the Munnar region for tea landscapes, a guided walk when weather allows and time to enjoy a quieter stay rather than a string of viewpoints.' },
+      { title: 'Days 6–9 · Follow the backwaters', description: 'Base yourself near Kumarakom or Alappuzha, with a boat outing chosen around local conditions. Add a coastal pause if it suits your route, leaving time for the journey home.' },
+    ],
+  },
+  {
+    slug: 'ladakh-under-open-skies', title: 'Ladakh, under open skies', destinationSlug: 'ladakh', duration: '9 days', price: '₹1.1–2.2 lakh',
+    description: 'A measured introduction to Leh, the Indus Valley and, when conditions allow, Nubra. Acclimatization comes first, followed by monastery visits and landscapes that deserve an unhurried day.',
+    highlights: ['Acclimatization before excursions', 'Indus Valley monasteries with a guide', 'A flexible Nubra Valley chapter'],
+    itinerary: [
+      { title: 'Days 1–2 · Give Leh time', description: 'Reserve at least the first 48 hours for acclimatization, without higher-altitude excursions or an active sightseeing schedule. Your stay provides the starting point; the road can wait.' },
+      { title: 'Days 3–5 · Along the Indus', description: 'Continue with selected monastery visits and village encounters, adapting the pace with your local guide. Keep travel distances manageable and leave space for another quiet morning.' },
+      { title: 'Days 6–9 · A wider valley, a flexible return', description: 'Consider Nubra only after acclimatization and confirmation of permits, weather and road access. If conditions change, remain around Leh and the Indus Valley; return to Leh with a buffer before departure.' },
+    ],
+  },
+  {
+    slug: 'andaman-an-island-at-your-pace', title: 'An island at your pace', destinationSlug: 'andaman-islands', duration: '8 days', price: '₹1.0–2.0 lakh',
+    description: 'A focused Andaman escape with a gentle arrival, a few full days on Swaraj Dweep and space around the ferry crossings. Forest-fringed beaches set the mood; the sea sets the schedule.',
+    highlights: ['An easy main-island arrival', 'Long beach days on Swaraj Dweep', 'Considered ferry and flight buffers'],
+    itinerary: [
+      { title: 'Days 1–2 · Arrive without a rush', description: 'Begin in Sri Vijaya Puram, also known as Port Blair, and settle in before your onward island transfer. Your ferry arrangements follow current schedules and sea conditions.' },
+      { title: 'Days 3–6 · Make Swaraj Dweep your base', description: 'Leave time for Radhanagar and other suitable beaches, forest shade and a guided water outing if conditions allow. Choose a few meaningful plans and protect the days between them.' },
+      { title: 'Days 7–8 · A considered return', description: 'Travel back to the main island ahead of your onward flight, with a buffer for changing ferry conditions. Enjoy an easy final evening rather than another island connection.' },
+    ],
+  },
 ];

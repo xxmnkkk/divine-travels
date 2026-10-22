@@ -7,6 +7,12 @@ export const inquiryDestinations = [
   { value: "kenya", label: "Kenya" },
   { value: "bali", label: "Bali" },
   { value: "iceland", label: "Iceland" },
+  { value: "rajasthan", label: "Rajasthan, India" },
+  { value: "kerala", label: "Kerala, India" },
+  { value: "goa", label: "Goa, India" },
+  { value: "kashmir", label: "Kashmir, India" },
+  { value: "ladakh", label: "Ladakh, India" },
+  { value: "andaman-islands", label: "Andaman Islands, India" },
   { value: "open", label: "I’m open to ideas" },
 ] as const;
 
@@ -68,7 +74,7 @@ export const inquiryContent = {
   budget: {
     label: "Your budget, per traveler",
     placeholder: "Choose a comfortable range",
-    hint: "In Indian rupees, excluding international flights. A starting point, with room to refine.",
+    hint: "In Indian rupees, excluding flights. A starting point, with room to refine.",
   },
   interests: { label: "What draws you in?", hint: "Choose any that feel like you. Optional." },
   name: { label: "Your name", placeholder: "First and last name" },
